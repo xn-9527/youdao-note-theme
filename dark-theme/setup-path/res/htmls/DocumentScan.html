@@ -1,0 +1,229 @@
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+    /* 设置滚动条的样式 */
+    ::-webkit-scrollbar {
+         width:9px;
+         background:transparent;
+    }
+    
+    /* 滚动槽 */
+    ::-webkit-scrollbar-track {
+        /*border-radius:4px;*/
+        background-color: transparent;
+    }
+    /* 滚动条滑块 */
+    ::-webkit-scrollbar-thumb {
+        /*border-radius:4px;*/
+        width: 9px;
+        background:rgba(224,227,241,1.0);
+    }
+    
+    ::-webkit-scrollbar-thumb:hover{
+        width: 9px;
+        background:rgba(187,200,228,1.0);
+    }
+    .imgAttr {
+        max-width: 90%; 
+        display: inline-block;
+        box-shadow: 1px 1px 5px #B3B3B3;
+    }
+    
+    .divInner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+</head>
+<body onresize="onResize()">
+<script type="text/javascript" src="template_for_communication_with_ynote/js/YNoteCommunicationInterface.js"></script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/CefSupportScript.js"></script>
+<script type="text/javascript">
+var isReadOnly = false;
+var divHL;
+var lastPos = "";
+
+var orientationMap = {
+ "1":'',
+ "2":'scale(-1,-1)',
+ "3":'rotate(180deg)',
+ "4":'scale(-1,-1) rotate(180deg)',
+ "5":'scale(-1,-1) rotate(90deg)',
+ "6":'rotate(90deg)',
+ "7":'scale(-1,-1) rotate(270deg)',
+ "8":'rotate(270deg)',
+};
+
+function onResize()
+{
+    ResizeImage();
+    ClearHighlight(false);
+    if(lastPos != "")
+    {
+        DoHighlight( lastPos );
+    }
+}
+
+function onDBClick(e){
+    if(!isReadOnly) {
+         var id=e.getAttribute("data-renderId");
+         window.YNote.OpenImage(id);
+    }
+ }
+
+ function onContextMenu(e){
+    if(!isReadOnly) {
+         var id=e.getAttribute("data-renderId");
+         window.YNote.ContextMenu(id);
+    }
+ }
+ 
+function updateScanPosition(percent) {
+    if(percent == 0) {
+        return;
+    }
+
+    var clientHeight = document.body.clientHeight;
+    var scrollHeight = document.body.scrollHeight;
+    if( scrollHeight > clientHeight ) {
+        var scrollValue = percent * scrollHeight / 100;
+        document.body.scrollTop = scrollValue;
+    }
+}
+
+function OnImgLoad(e){
+
+    var rect = e.getBoundingClientRect();
+    e.parentElement.style.height=rect.height + 'px';
+}
+  
+function handleMessageFromClient(msgType, param1, param2, param3) {
+    if(msgType == "updateImageInfo") {
+        window.getSelection().removeAllRanges();
+        document.body.innerHTML = "";
+        var divContainer = document.createElement('div');
+        document.body.appendChild(divContainer);
+        
+        divHL = document.createElement('div');
+        document.body.appendChild(divHL);
+        divHL.setAttribute('id', 'highlightpos');
+        
+        var datas = JSON.parse(param1);
+        for (var i = 0; i < datas.length; ++i) {
+            var imgInner = document.createElement('img');
+            imgInner.setAttribute('class', 'imgAttr');
+            var imgPath = datas[i].ImagePath + "?t=" + Math.random();
+            imgInner.setAttribute('style', '-webkit-transform:' + orientationMap[datas[i].Orientation]);
+            imgInner.setAttribute('src', imgPath);
+            imgInner.setAttribute('id', datas[i].RenderImageName);  
+            imgInner.setAttribute('data-originId', datas[i].OriginImageName);
+            imgInner.setAttribute('data-renderId', datas[i].RenderImageName);
+            imgInner.setAttribute('ondblclick', 'onDBClick(this)');
+            imgInner.setAttribute('onload', 'OnImgLoad(this)');
+            imgInner.setAttribute('oncontextmenu', 'onContextMenu(this)');
+            
+            var divInner = document.createElement('div');
+            divInner.setAttribute('class', 'divInner');
+            divInner.appendChild(imgInner);
+            divContainer.appendChild(divInner);
+            var brInner = document.createElement('br');
+            divContainer.appendChild(brInner);  
+        }
+    }
+    else if(msgType == "updateScanPosition") {
+        setTimeout(function(){updateScanPosition(param1)},50);
+    }
+    else if(msgType == "clear") {
+        document.body.innerHTML = "";
+    }
+    else if(msgType == "readOnly") {
+        isReadOnly = param1;
+    }
+    else if(msgType == "updateHighlightPosition"){
+        DoHighlight( param1 );
+    }
+    else if(msgType == "ClearHighLight")
+    {
+        ClearHighlight( true );
+    }
+}
+
+function ResizeImage()
+{
+    var imgParent = document.getElementsByClassName("imgAttr");
+    for (var i = imgParent.length - 1; i >= 0; i--) {
+        OnImgResize(imgParent[i]);
+    }
+}
+
+function OnImgResize(e){
+    var rect = e.getBoundingClientRect();
+    e.parentElement.style.height=rect.height + 'px';
+}
+
+function DoHighlight( Pos )
+{
+    var hlPos = JSON.parse(Pos);
+    var scrollTop = document.body.scrollTop;    //滚动条初始位置
+    for(var i=0; i<hlPos.length; i++)
+    {
+        var hl = document.createElement('div');
+
+        var imgParent = document.getElementById(hlPos[i].id);
+        if(imgParent == null)
+        {
+            return;
+        }
+        
+        lastPos = Pos;
+        
+        var rect = imgParent.getBoundingClientRect();
+        
+        //计算图片x、y缩放的比例
+        var xscale = rect.width / imgParent.naturalWidth;
+        var yscale = rect.height / imgParent.naturalHeight;
+        
+        hl.style.position = "absolute";
+        hl.style.left   = rect.left  + hlPos[i].l * xscale;
+        hl.style.top    = rect.top + scrollTop + hlPos[i].t  * yscale;
+        hl.style.width  = (hlPos[i].r - hlPos[i].l) * xscale;
+        hl.style.height = (hlPos[i].b - hlPos[i].t) * yscale;
+        hl.style.background = "#FFFF00";
+        hl.style.display = "inline-block";
+        hl.style.opacity = 0.8;
+        divHL.appendChild(hl);
+    }
+}
+
+//clear所有高亮显示
+function ClearHighlight(bClear)
+{
+    if( bClear == true )
+    {
+        lastPos = "";
+    }
+
+    var hlParentDiv = document.getElementById('highlightpos');
+    if( hlParentDiv == null )
+    {
+        return;
+    }
+    while( hlParentDiv.hasChildNodes() ){
+        hlParentDiv.removeChild(hlParentDiv.lastChild);
+    }
+}
+
+listApis["getScrollPercent"] = function() {
+    var scrollValue = Math.round(document.body.scrollTop / document.body.scrollHeight * 100);
+    return scrollValue;
+}
+
+listApis["getContent"] = function() {
+    var content = {"content": document.documentElement.outerHTML };
+    return content;
+}
+</script>
+</body>
+</html>

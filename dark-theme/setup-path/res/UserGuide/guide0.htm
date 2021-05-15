@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>引导</title>
+<style>
+html,body{padding:0;margin:0;overflow:hidden}
+button{display:inline-block;padding:0 11px;margin:0;width:60px;height:24px;font:12px/20px "微软雅黑", Arial, "华文黑体", "黑体", sans-serif;color:#fff;background:#499fef;border-radius:1px;border:1px solid #2c84dd;cursor:pointer;
+    transition:all .3s ease-in-out;
+    -webkit-transition:all .3s ease-in-out;
+    -moz-transition:all .3s ease-in-out;
+    -o-transition:all .3s ease-in-out;
+}
+button:hover{background:#3f98eb;border-color:#1575d7}
+button:active{background:#3590e5;border-color:#1370ce;box-shadow:0 1px 2px rgba(0, 0, 0, .15) inset;
+    transition:all .15s ease-in-out;
+    -webkit-transition:all .1s ease-in-out;
+    -moz-transition:all .1s ease-in-out;
+    -o-transition:all .1s ease-in-out;
+}
+button[disabled="disabled"]{color:#c4c9ca;background:#f9f9fa;border-color:#e9ebec}
+.wrapper{min-width:270px;max-width:360px;background:#fff;font:12px/22px arial,sans-serif}
+.hd{position:relative;height:35px;padding:0 12px;line-height:35px;border-bottom:1px solid #d3d8db}
+.title{font-weight:bold}
+
+.bd{padding:8px 12px;color:#333;background:url(pc-guide-popup-bg.png) no-repeat center bottom}
+p{margin:0 0 6px}
+p:last-child{margin:0}
+.ft{height:24px;padding:6px 12px;text-align:right}
+.page-num{margin:0 12px;line-height:24px;color:#abacac}
+</style>
+</head>
+
+<script type="text/javascript">
+    window.external.SetSize(280, 168);
+</script>
+
+<body id="CHtmltipDialog">
+<div class="wrapper">
+	<div class="hd">
+		<span class="title">新建笔记</span>
+	</div>
+	<div class="bd">
+		<p>点此在界面的右侧新建一篇空白笔记。在编辑框中输入内容，当前笔记的缩略图会自动生成并展现在界面的中部。</p>
+	</div>
+	<div class="ft">
+		<span class="page-num">1/4</span>
+		<button id="ButtonNext">下一页</button>
+	</div>
+</div>
+</div>
+</body>
+</html>

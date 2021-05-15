@@ -1,0 +1,59 @@
+﻿.singleLine
+{
+    border-top: solid 1px #DEDEDE;
+}
+.title
+{
+    font-weight: bold;
+    left:15px;
+    font-size: 12px;
+    line-height: 32px;
+    position:relative;
+}
+
+.text
+{
+    color:#333333;
+    background-color:#FAFCFC;
+    border-left: 15px solid #FAFCFC;
+    border-right: 15px solid #FAFCFC;  
+    border-top:10px solid #FAFCFC;
+    border-bottom:10px solid #FAFCFC;
+    font-size: 12px;
+    line-height:22px;
+}
+
+
+.completed_text
+{
+    color:#333333;
+    background-color:#FAFCFC;
+    font-size: 12px;
+    line-height:22px;
+}
+
+.pageIndex
+{
+    color: #999999;
+    font-size: 12px;
+    line-height: 32px;
+    border-right: 15px solid #FFFFFF;    
+    text-align: left;
+    vertical-align: middle;
+    width: 100%;
+}
+
+
+a:link
+{
+    color:#148fd4;
+    text-decoration:none;
+    outline:none;
+}
+
+a:visited
+{
+    color:#148fd4;
+    text-decoration:none;
+    outline:none;
+}

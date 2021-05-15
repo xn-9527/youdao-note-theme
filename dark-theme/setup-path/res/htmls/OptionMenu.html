@@ -1,0 +1,1283 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>标题</title>
+    <link type="text/css" rel="stylesheet" href="css/htmldialogbase.css"/>
+    <style>
+        .line {
+            height: 42px;
+            font-size: 12px;
+            padding-left: 6px;
+        }
+		
+		.account{
+		    font-family: MicrosoftYaHei;
+            font-size: 14px;
+            color: #a9b7c6;
+            letter-spacing: 0;
+            line-height: 15px;
+		}
+		
+        .subtitleblue {
+			font-family:'Microsoft Yahei';
+            font-size: 12px;
+			color:#a9b7c6;
+            letter-spacing: 0;
+            line-height: 12px;
+			font-weight:600;
+        }		
+		
+		.blueline1{
+		    font-family: MicrosoftYaHei;
+            font-size: 12px;
+            color: #5576BD;
+            letter-spacing: 0;
+            line-height: 12px;
+		}
+        
+        .blueline1:hover{
+            color: #445E97;
+        }
+		
+		.blueline {
+            height: 20px;
+            font-size: 12px;
+            padding-left: 6px;
+            font-weight: 500;
+			color:#0000ff;
+			cursor:pointer;
+        }
+		
+		.leftline {
+			opacity:0.6;
+            height: 48px;
+			width:128px;
+			font-family:'Microsoft Yahei';
+            font-size: 12px;
+			line-height: 48px;
+			color:#a9b7c6;
+		}
+		
+		.leftlinesel {
+            height: 48px;
+			width:128px;
+            font-size: 12px;
+            font-weight: 500;
+			line-height: 48px;
+			background-color:#E8F0FF;
+		}
+			
+		.leftline:hover{
+			cursor:pointer;
+			background-color: #E8F0FF;
+		}
+
+        .userattr {
+			font-family:'Microsoft Yahei';
+            font-size: 12px;
+            color: #666666;
+            letter-spacing: 0;
+            line-height: 12px;
+        }
+        
+        .userattr:disabled{
+            color:#ff0000;
+        }
+
+        .fontattr {
+			font-family:'Microsoft Yahei';
+            font-size: 12px;
+            letter-spacing: 0;
+            line-height: 12px;
+        }
+		
+        .userattr2 {
+			font-family:'Microsoft Yahei';
+            font-size: 12px;
+            color: #666666;
+            letter-spacing: 0;
+            line-height: 21px;
+        }
+		
+        .userattrvalue {
+			font-family:'Microsoft Yahei';
+            font-size: 12px;
+            color: #a9b7c6;
+            letter-spacing: 0;
+            line-height: 15px;
+			padding-left:20px;
+        }
+		
+		.userinput{
+			width:229px;
+			height:24px;
+			margin-left:16px;
+			font-size:12px;
+			font-family:'Microsoft Yahei';
+		}
+		
+        .attrline {
+            height: 32px;
+            margin-left:24px;
+		}
+		
+        .limitShow {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 200px;
+            display: inline-block;
+        }
+     
+        .deviceShow {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: inline-block;
+            height:14px;
+        }
+        
+        .hoverDefault:hover {
+            cursor: default;
+        }
+        .hoverhand:hover{
+            cursor: pointer;
+        }
+	
+        #district, #city {
+            font-family:微软雅黑'微软雅黑', 'Microsoft Yahei', '宋体', 'Simsun';
+            height: 28px;
+            padding-left: 4px;
+            width: 80px;
+        }
+
+        #errorIcon{
+            background-image: url(res/error.png);
+            background-position: 0px, -100%;
+            background-size:contain;
+        } 
+
+        .errorIconPos{
+            height: 32px;
+            width: 32px;
+            display: inline-block;
+            position: relative;
+        }
+        
+        #closeBtn{
+            background-image: url(res/btn_x.png);   
+            background-position:0px -100%;
+            background-size:100% 200%;
+        }
+        #closeBtn:hover{
+            background-image: url(res/btn_x.png);
+            background-position:0px 0%;
+            background-size:100% 200%;
+        }
+        
+        .closeBtnPos{
+            height: 12px;
+            width: 12px;
+            top: 2px;
+            margin-left:-25px;
+            display: inline-block;
+            position: relative;
+        }
+        
+        #selectDir{
+            background-image: url(res/SelectDir.png);   
+            background-position:0px 100%;
+            background-size:100% 200%;
+        }
+        #selectDir:hover{
+            background-image: url(res/SelectDir.png);
+            background-position:0px 0%;
+            background-size:100% 200%;
+        }
+        
+        .selectDirPos{
+            height: 32px;
+            width: 32px;
+            display: inline-block;
+            position: relative;
+        }
+        
+        #updateIcon{
+            background-image: url(res/Btn_Update.png);
+            background-position: 0px 0%;
+            background-size:100% 200%;
+        }        
+        #updateIcon:hover{
+            background-image: url(res/Btn_Update.png);
+            background-position: 0px 100%;
+            background-size:100% 200%;
+        }  
+      
+        .updateIconPos{
+            height: 32px;
+            width: 128px;
+            display: inline-block;
+            position: relative;
+        }
+        
+        #vipIcon{
+            background-image: url(res/vipIcon.png);
+            background-position: 0px -16px;
+            background-size:100% 200%;
+        }
+        #novipIcon{
+            background-image: url(res/vipIcon.png);
+            background-position: 0px -32px;
+            background-size:100% 200%;
+        }
+        #vipIcon:hover, #novipIcon:hover{
+            background-position: 0px -16px;
+            background-size:100% 200%;
+        }
+        #vipIcon:active, #novipIcon:active{
+            background-position: 0px -32px;
+            background-size:100% 200%;
+        }
+        .vipIconPos{
+            height: 16px;
+            width: 24px;
+            display: inline-block;
+            position: relative;
+        }
+		
+        .noDisplay{
+            display: none;
+        }
+		
+        /*************scroll bar****************/
+
+        ::-webkit-scrollbar-track-piece:vertical {
+            background-color:#FFF;
+        }
+        ::-webkit-scrollbar-track-piece:horizontal {
+            background-color:#FFF;
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color:#e0e3f1;
+        }
+        ::-webkit-scrollbar-thumb:window-inactive {
+            background-color:#e0e3f1;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background-color:#daddef;
+        }
+        ::-webkit-scrollbar-thumb:active {
+            background-color:#e0e3f1;
+        }
+		
+		.storage-status
+		{
+			height:16px;
+			width:608px;
+            background:#344133;
+			box-shadow: 0 6px 8px 0 rgba(85,118,189,0.08);
+			border-radius: 100px;
+		}
+		.storage-used {
+		    height:16px;
+            background: linear-gradient(270deg, #50C5EC 6%, #6F89D4 99%);
+            border-radius: 100px 0 0 100px;
+        }
+
+		.maxRoundBtn{
+			height:32px;
+			width:96px;
+			border-radius:32px;
+		}
+		
+		.maxplusRoundBtn{
+			height:32px;
+			width:108px;
+			border-radius:32px;
+		}
+		
+		.bigRoundBtn{
+			height:32px;
+			width:96px;
+			border-radius:32px;
+		}
+		
+		.midRoundBtn{
+			height:32px;
+			width:72px;
+			border-radius:32px;
+		}
+
+		.deviceBtn{
+			height:32px;
+			width:88px;
+			border-radius:100px;
+		}
+		
+		.imagehover{
+		    border-radius:24px
+		}
+		
+		.imagehover:hover{
+			
+		}
+
+		.userinfobg{
+			background: #3b4d62;
+            box-shadow: 10px 0 10px -5px rgba(32,44,92,0.04) inset;
+			border-radius: 2px;
+		}
+		
+		.leftBlock{
+		    background: #3b4d62;
+            box-shadow: 0 0 20px 0 rgba(32,44,92,0.10);
+		}
+		
+		.mainBlock{
+			height:490px;
+			width:816px;
+			background: #3b4d62;
+            box-shadow: 0 0 20px 0 rgba(85,118,189,0.15);			
+			border-radius: 2px;
+		}
+
+		.radio_label{
+			background: url(res/button_ratio.png) no-repeat;
+			background-size:14px 28px;
+			display: inline-block;
+			line-height: 14px;
+			height: 14px;
+			text-indent:14px;
+			margin-right:28px;
+		}
+
+		.checkbox_label{
+			background:url(res/checkbox.png);
+            background-repeat: no-repeat;
+			background-size:14px 28px;
+			display: inline-block;
+			line-height: 14px;
+			height: 14px;
+			text-indent:14px;
+			margin-right:28px;
+		}
+
+		.checked {
+			background-position: 0  -14px;
+		}
+
+		input[type='radio'] {
+			display:none;
+		}
+
+		input[type='checkbox'] {
+			display:none;
+		}
+		
+		.boxsize{
+			width:176px;
+			height:32px;
+        }
+        
+        .inputstyle{
+            border: 1px solid rgba(102,102,102,0.40);
+            background-color:#fafafa;
+        }
+
+        .inputstyle:disabled{
+            border: 1px solid rgba(102,102,102,0.40);
+            background-color:#ededed;
+        }
+		
+		.color6{
+			color:#5576BD;
+		}
+		
+		.color9{
+			color:#999999;
+		}
+		
+		.grayround{
+			width:9px;
+			height:9px;
+			background: #D8D8D8;
+			border-radius:50%;
+			margin-left:-4px;				
+		}
+		
+		.blueround{
+			width:11px;
+			height:11px;
+			background: #5576BD;
+			border-radius:50%;
+			margin-left:-5px;	
+		}
+        
+        .transparentBK{
+            width:33px;
+            height:33px;
+            margin-left:-16px;
+            background:#F0F0F0;
+            opacity:0;
+        }
+        
+        .transparentBK:hover{
+            cursor:pointer;
+        }
+        
+        .imexportBtn{
+            border: 1px solid rgba(0,0,0,0.10);
+            width:168px;
+            height:136px;
+            background-color:#fafafa;
+            border-radius:0px;
+            padding-left:0;
+            padding-right:0;
+        }
+        
+        .imexportBtn:hover{
+            border: 1px solid transparent;
+            border-color:#99B0E3;
+            background: #fafafa;
+        }
+        
+        #importYnote{
+            background-image: url(res/imexport_note.png);
+            background-repeat: no-repeat;
+            background-size:38px 38px;
+            background-position: 65px 37px;
+        }
+
+        #exportYnote{
+            background-image: url(res/imexport_note.png);
+            background-repeat: no-repeat;
+            background-size:38px 38px;
+            background-position: 65px 37px;
+        }
+        
+        #imexportOther{
+            background-image: url(res/imexport_other.png);
+            background-repeat: no-repeat;
+            background-size:38px 38px;
+            background-position: 65px 37px;
+        }
+        
+        #imexportEvernote{
+            background-image: url(res/imexport_evernote.png);
+            background-repeat: no-repeat;
+            background-size:38px 38px;
+            background-position: 65px 37px;
+        }
+        
+        #imexportAll{
+            background-image: url(res/imexport_all.png);
+            background-repeat: no-repeat;
+            background-size:38px 38px;
+            background-position: 65px 37px;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="mainBlock">
+<div class="leftBlock" style="float:left;height:490px;width:128px">
+	<div style="float:left;margin-top:18px">
+		<div id="tab1" class="tab leftline">
+            <span style="margin-left:40px;">账户信息</span>
+            <image src="res/RedDot.png" id="redcircle" style="position:absolute;left:26px;top:40px;width:4px;height:4px;display:none"></image>
+        </div>
+		<div id="tab2" class="tab leftline">
+            <span style="margin-left:40px;">账户安全</span>
+            <image src="res/RedDot.png" id="reddot" style="position:absolute;left:26px;top:88px;width:4px;height:4px;display:none"></image>
+        </div>
+		<div id="tab3" class="tab leftline"><span style="margin-left:40px;">设置</span></div>
+		<div id="tab4" class="tab leftline" style="margin-top:33px"><span style="margin-left:40px;">导入导出</span></div>
+		<div id="tab5" class="tab leftline"><span style="margin-left:40px;">帮助</span></div>
+	</div>
+</div>
+
+<div style="position:absolute;left:128px;font-size:14px;overflow-y:hidden;height:490px;width:688px" id="tab1show" class="tab-content userinfobg">
+    <div style=" height:170px;margin-top:2px;margin-left:40px ">
+        <div style="float:left; width:48px; height:48px;">
+			<image src="" id="portrait" class="imagehover" onmouseover="showblind()"  style="width: 48px;height:48px"></image>
+			<image id="blind" src="res/portraitbg.png" onclick="onClickUploadNewPortrait()" onmouseout="hideblind()" style="display:none;width:48px;height:48px;margin-top:-48px;margin-top:-48px"></image>			
+        </div>
+        <div>
+            <div> <span style="margin-left:24px;margin-top:14px;line-height:18px"id="nicknamebig" class="account limitShow hoverDefault">youyou23</span>
+                <span id="novipIcon" onclick="OpenVipLink()" class="vipIconPos hoverhand"></span>
+                <span id="vipIcon" onclick="OpenVipLink()" class="vipIconPos nodisplay hoverhand"> </span>
+                <input id="vipText" type="button" class="greybutton bigRoundBtn" value="开通会员" onclick="OpenVipLink()" style="float:right;margin-right:40px;margin-top:8px">
+                <input id="btnCheckin" type="button" class="greybutton bigRoundBtn" value="签到" onclick="CheckIn()" style="float:right;margin-right:40px;margin-top:8px">
+                <image id="checkinTip" src="res/checkin.png" style="position:absolute;left:470px;margin-top:-4px;width: 56px;height:37px;"></image>
+            </div>
+			<div style="text-align:right;margin-right:40px;margin-top:19px;line-height:15px">
+				<span id="spacetip"><span style="color:5576BD">开通会员独享</span><span style="color:BD9955">50G大空间</span></span>
+				<span id="spacetipVip" style="font-size:12px;color:#999999;display:none"><span>会员到期时间:</span><span id="expiretime"></span></span>
+			</div>
+			
+            <div style="margin-top:35px">
+                <image src="res/spacePerc.png" id="storageimage" style="position:absolute;top:72px;left:0px">
+                    <span id="storagetext" class="userattr" style="position:absolute;top:78px"></span></image>
+                <div class="storage-status">
+                    <div id="storageused" class="storage-used" style="margin-top:-2px"></div>
+                </div>
+                <div style="font-size:12px;margin-top:7px">
+                    <span id="SetSpaceUsed" style="color:5576BD;line-height:15px"></span>/<span id="SetSpaceAll" style="color:2A2A2A"></span>
+                    <span id="SpaceCheckIn" style="color:F2766F;font-weight:bold;font-size:16px;position:relative;margin-left:10px;top:2px"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+    <div style="height:240px;width:608px;margin-left:40px;display:block;background-color:#344133" id="InfoShow">
+        <div style="float:left;margin-top:25px;height:175px;width:608px;overflow-y:scroll;-webkit-user-select:text;">
+            <div class="attrline"><span class="userattr">昵称</span><span id="nickname"class="userattrvalue">-</span></div>
+            <div class="attrline"><span class="userattr">账号</span><span id="setUserId"class="userattrvalue">-</span></div>
+            <div class="attrline"><span class="userattr">性别</span><span id="userGender"class="userattrvalue">保密</span></div>
+            <div class="attrline"><span class="userattr">地区</span><span id="userArea" class="userattrvalue"></span></div>
+            <div class="attrline"><span class="userattr">签名</span><span id="sigature" class="userattrvalue"></span></div>
+        </div>
+    </div>
+	
+	<div style="height:240px;width:608px;margin-left:40px;background-color:#344133;display:none" id="InfoChange">
+		<div style="float:left;margin-top:25px;height:175px;width:608px;overflow-y:scroll">
+            <div class="attrline"><span class="userattr" style="margin-top:-2px">昵称</span><input class="userinput" id="setnickname"/></div>
+            <div class="attrline"  style="margin-top:5px"><span class="userattr">性别</span>
+                <label class="radio_label" style="margin-left:16px"><input name="sex" style="position: relative; top:2px" type="radio"id="genderMale"/>男 </label>
+                <label class="radio_label" style=""><input name="sex" style="position: relative; top:2px" type="radio"id="genderFemale"/>女</label>
+			    <label class="radio_label" style=""><input name="sex" style="position: relative; top:2px" type="radio"id="genderUnknown"/>保密 </label>
+                </span>
+            </div>
+            <div class="attrline"><span class="userattr">地区</span><select id="district" style="margin-left:16px;height:24px"onchange="onSelectChange(this)"></select></span>
+			    <select id="city" style="margin-left:64px;height:24px"></select></div>
+            <div class="attrline"><span class="userattr" style="float:left;margin-top:6px">签名</span><textarea style="resize:none;width:229px;height:48px;margin-left:16px;font-size:12px;font-family:'Microsoft Yahei'" id="setsigature" disabled></textarea></div>
+        </div>
+	</div>
+    <div id="InfoTip" style="float:left;color:ff9494;font-family:'Microsoft Yahei';font-size:12px;margin-left:103px;margin-top:-25px"></div>
+	<div id="BtnChangeInfo" style="display:block;margin-right:40px; margin-top:24px" align="right">
+		<button onclick="ChangeUserInfo('0')" class="bluebutton bigRoundBtn">修改信息</button>
+	</div>
+	<div id="BtnSaveInfo" style="display:none;margin-top:24px;margin-right:40px" align="right">
+		<button onclick="SaveUserInfo()" class="bluebutton midRoundBtn" style="margin-right:24px">保存</button>
+		<button onclick="ChangeUserInfo('1')" class="greybutton midRoundBtn">取消</button>
+	</div>
+</div>
+
+<div style="display:none;position:absolute;left:128px;font-size:14px;height:490px;width:688px" id="tab2show" class="tab-content userinfobg">
+	<div style="overflow-y:hidden;margin-left:32px;margin-top:18px">
+		<div style="float:left">
+			<div class="safetab color6" id="safetab1"><span class="fontattr hoverhand">密码管理</span></div>
+            <div class="safetab color9" style="margin-top:68px" id="safetab4">
+                <span class="fontattr hoverhand">手机绑定</span>
+                <image src="res/RedDot.png" id="SubReddot" style="position:absolute;left:22px;top:100px;width:4px;height:4px;display:none"></image>
+            </div>
+			<div class="safetab color9" style="margin-top:68px" id="safetab2"><span class="fontattr hoverhand">设备管理</span></div>
+			<div class="safetab color9" style="margin-top:66px" id="safetab3"><span class="fontattr hoverhand">短信提醒</span></div>
+		</div>
+	</div>
+   
+    <div style="float:left;margin-left:100px;margin-top:-250px;width:1px;height:245px;background:#e2e2e2">
+        <div class="transparentBK" onclick="OnClickSafeDot('safetab1')" style="margin-top:-11px"></div>
+        <div id="safetab1round" class="round blueround" onclick="OnClickSafeDot('safetab1')" style="margin-top:-21px"></div>
+        <div class="transparentBK" onclick="OnClickSafeDot('safetab4')" style="margin-top:59px"></div>
+        <div id="safetab4round" class="round grayround" onclick="OnClickSafeDot('safetab1')" style="margin-top:-21px"></div>  
+        <div class="transparentBK" onclick="OnClickSafeDot('safetab2')" style="margin-top:59px"></div>
+        <div id="safetab2round" class="round grayround" onclick="OnClickSafeDot('safetab1')" style="margin-top:-21px"></div>
+        <div class="transparentBK" onclick="OnClickSafeDot('safetab3')" style="margin-top:59px"></div>
+        <div id="safetab3round" class="round grayround" onclick="OnClickSafeDot('safetab1')" style="margin-top:-21px"></div>          
+	</div>
+    
+	<div class="safetab-content" style="margin-left:153px;margin-top:-252px" id="safetab1show">
+		<div id="loginPswd">
+            <div class="subtitleblue">登录密码</div>
+            <div style="margin-top:16px"><a class="blueline1" onclick="OpenChangePswd()" href="http://reg.163.com/getpasswd/RetakePassword.jsp" target="_blank">去网易通行证修改登录密码</a></div>
+            <div style="height: 40px"></div>
+        </div>
+		<div class="subtitleblue">阅读密码</div>	
+		<button onclick="ChangeReadPswd()" class="greybutton" style="margin-top:19px;width:152px;height:32px;border-radius:100px">设置和更改阅读密码</button>
+		<div style="margin-top:17px">
+		    <label class="checkbox_label userattr"><input type="checkbox" id="SetMinReadLock"/>&nbsp;&nbsp;窗口关闭或最小化到任务栏时加密</label>		
+		</div>
+
+		<div class="userattr" style="margin-top:19px">
+			<label class="checkbox_label">
+		    <input type="checkbox" id="SetTimeReadLock"/><span>&nbsp;&nbsp;鼠标键盘</span>
+		    <input type="tel" min="1" class="inputstyle" onkeypress="return event.charCode >= 48 && event.charCode <= 57" style="width:32px;height:16px" id="SetReadIntevals"/><span>分钟内无操作自动加密</span>
+			</label>
+		</div>
+		<div class="userattr " style="margin-top:19px">
+		    <label class="checkbox_label"><input type="checkbox" id="SetSwitchReadLock" style=""/>&nbsp;&nbsp;切换笔记或文件夹时加密</label>
+		</div>
+		<div class="subtitleblue" style="margin-top:40px">锁定密码</div>	
+		<div><button onclick="ChangeLockPswd()" class="greybutton" style="margin-top:19px;width:152px;height:32px;border-radius:100px;">设置和更改锁定密码</button></div>
+		<div class="userattr " style="margin-top:17px"><label class="checkbox_label"><input type="checkbox" id="SetMinLock"/>&nbsp;&nbsp;启动时自动进入锁定状态</label></div>
+		<div class="userattr " style="margin-top:19px">
+		    <label class="checkbox_label">
+			<input type="checkbox" id="SetTimeLock"><span>&nbsp;&nbsp;鼠标键盘</span>
+			<input type="tel" min="1" class="inputstyle" style="width:32px;height:16px" onkeypress="return event.charCode >= 48 && event.charCode <= 57" id="SetIntevals"/><span>分钟内无操作，自动进入锁定状态</span>
+		    </label>
+		</div>
+		<div class="userattr " style="margin-top:19px"><label class="checkbox_label"><input type="checkbox" id="SetSwitchLock"/>&nbsp;&nbsp;窗口关闭或最小化到任务栏时自动锁定</label></div>
+	</div>
+
+    <div class="safetab-content" style="margin-left:153px;margin-top:-252px;height:400px;display:none" id="safetab4show">
+        <div id="safetab4show1">
+            <div class="subtitleblue">未绑定</div>
+            <div class="userattr" style="margin-top:16px">
+                <span class="hoverhand" style="color:#5576BD;" onclick="BindLoginPhone()">立即绑定</span>
+            </div>
+        </div>
+        <div id="safetab4show2" style="display:none">
+            <div class="subtitleblue" id="BindLoginPhoneInfo"></div>
+            <div class="userattr" style="margin-top:16px">
+                <span class="hoverhand" style="color:#5576BD;" onclick="ChangeLoginPhone()">修改手机号</span>
+            </div>
+        </div>
+        <div id="safetab4show3" style="display:none">
+            <div class="subtitleblue" id="BindLoginPhoneInfo">网络错误，获取失败</div>
+        </div>
+    </div>
+
+	<div class="safetab-content" style="margin-left:153px;margin-top:-252px;height:400px;display:none" id="safetab2show">
+		<div class="subtitleblue">我的设备</div>
+		<div class="userattr" style="margin-top:16px">此处显示您使用过有道云笔记的所有电脑，手机和平板电脑</div>
+        <div id="deviceTip" class="userattr" style="position:absolute;margin-top:24px"></div>
+		<div id="devices" style="display:none;margin-top:48px;height:350px;width:480px;overflow-y:auto;overflow-x:hidden">
+            <div class="userattr">
+                <span id="devicename" class="deviceShow" style="float:left;width:130px;margin-top:10px"></span>
+                <span style="float:left;width:70px;margin-top:10px">(PC版)</span>
+                <button class="whitebutton deviceBtn" style="float:left;margin-left:136px" disabled="true">当前设备</button>
+            </div>
+		</div>
+		<div id="neterror" style="float:left;margin-top:8px;display:none">
+            <span id="errorIcon" class="errorIconPos"></span>
+			<span class="userattr" style="position:relative;top:-12px;left:16px">未检查到设备</span>
+            <button class="greybutton deviceBtn" style="position:relative;top:-12px;left:104px" onclick="ReGetDevices()">刷新</button>
+		</div>
+	</div>
+
+	<div class="safetab-content" style="margin-left:153px;margin-top:-252px;overflow-y:hidden;display:none" id="safetab3show">
+	    <div id="safetab3show1">
+		    <div class="subtitleblue">短信提醒</div>
+		    <div class="userattr" style="margin-top:16px">账号登录时发送短信提醒，为您提供更安全的账号管理</div>
+		    <div class="userattr" style="margin-top:16px">短信提醒为会员特权，购买
+		        <a class="blueline1" onclick="OpenVipLink()" href="http://note.youdao.com/charge/setMeal.html" target="_blank">有道云笔记会员&nbsp;</a>后使用
+            </div>
+		</div>
+        
+        <div id="safetab3show2" style="display:none">
+		    <div class="subtitleblue">短信提醒</div>
+		    <div class="userattr" style="margin-top:17px"><label class="checkbox_label"><input type="checkbox" id="loginTip1"/>&nbsp;&nbsp;新设备登录提醒</label></div>
+		    <div class="userattr" style="margin-top:20px"><label class="checkbox_label"><input type="checkbox" id="loginTip2"/>&nbsp;&nbsp;网页版登录提醒</label></div>
+            <div class="userattr" style="margin-top:20px">开启后，当你在某个设备登录，或是用某浏览器第一次登录网页版，会收到短信提醒。</div>
+            <div class="userattr" style="margin-top:15px;display:none" id="phoneresult">
+                <span>接收短信手机号：</span>
+                <span id="BindNumber"></span>
+                <span class="hoverhand" style="color:#5576BD;margin-left:20px" onclick="ChangePhone()">修改手机号</span>
+            </div>
+            <div id="phoneinput">
+                <div style="margin-top:25px"><span class="userattr">接收短信手机号</span><input disabled="true" class="inputstyle" id="phonenum1" style="height:32px;width:248px;margin-left:20px"/></div>
+                <div style="margin-top:35px"><span class="userattr">再次输入手机号</span><input disabled="true" class="inputstyle" id="phonenum2" style="height:32px;width:248px;margin-left:20px"/></div>
+                <div style="margin-top:35px"><span class="userattr">验证码</span><input id="phonenum3" class="inputstyle" disabled="true" style="height:32px;width:128px;margin-left:68px"/>
+                    <button class="greybutton" id="btnCaptcha" onclick="GetCaptcha()" disabled="true" style="width:100px;height:32px;margin-left:16px">获取验证码</button>
+                </div>          
+            </div>
+			<div>
+                <div style="color:#ff9494;margin-top:8px" id="msgtip"></div>
+                <button id="loginTipBtn" class="bluebutton bigRoundBtn" onclick="SavePhoneTip()" disabled="true" style="position:absolute;left:504px;top:368px">保存设置</button>
+            </div>
+        </div>
+        
+        <div id="safetab3show3" style="margin-top:10px;display:none">
+            <span id="errorIcon" class="errorIconPos"></span>
+			<span class="userattr" style="position:relative;top:-12px;left:16px">网络中断，请稍候刷新重试</span>
+            <button class="greybutton deviceBtn" style="position:relative;top:-12px;left:104px" onclick="ReGetBindStatus()">刷新</button>
+		</div>
+	</div>
+</div>
+
+<div style="display:none;position:absolute;left:128px;font-size:14px;height:490px;width:688px" id="tab3show" class="tab-content userinfobg">
+	<div style="overflow-y:hidden;margin-left:32px;margin-top:18px">
+		<div style="float:left">
+			<div class="opttab color6" id="optiontab1"><span class="fontattr hoverhand">全局设置</span></div>
+			<div class="opttab color9" id="optiontab2" style="margin-top:68px"><span class="fontattr hoverhand">网络连接</span></div>
+			<div class="opttab color9" id="optiontab3" style="margin-top:68px"><span class="fontattr hoverhand">快捷键</span></div>
+		</div>
+	</div>
+    
+    <div style="float:left;margin-left:100px;margin-top:-170px;width:1px;height:165px;background:#e2e2e2">
+        <div class="transparentBK" onclick="OnClickOptDot('optiontab1')" style="margin-top:-11px"></div>
+        <div id="optiontab1round" class="round2 blueround" onclick="OnClickOptDot(optiontab1)" style="margin-top:-21px"></div>
+        <div class="transparentBK" onclick="OnClickOptDot('optiontab2')" style="margin-top:59px"></div>
+        <div id="optiontab2round" class="round2 grayround" onclick="OnClickOptDot(optiontab2)" style="margin-top:-21px"></div>
+        <div class="transparentBK" onclick="OnClickOptDot('optiontab3')" style="margin-top:59px"></div>
+        <div id="optiontab3round" class="round2 grayround" onclick="OnClickOptDot('optiontab3')" style="margin-top:-21px"></div>            
+	</div>
+    
+	<div class="opttab-content" style="margin-left:153px;margin-top:-172px" id="optiontab1show">
+		<div class="subtitleblue">基本设置</div>
+	    <div class="userattr" style="margin-top:14px">
+		    <label class="checkbox_label"><input type="checkbox" id="SetAutoRun">&nbsp;&nbsp;启动windows时启动有道云笔记</label></div>
+	    <div class="userattr" style="margin-top:18px"><label class="checkbox_label"><input type="checkbox" id="SetAutoUpdate"><span>&nbsp;&nbsp;自动检查客户端更新</label></div>
+		<div class="userattr" style="margin-top:18px"><label class="checkbox_label"><input type="checkbox" id="SetMinToTray">&nbsp;&nbsp;最小化时到系统托盘</label></div>
+        <div class="subtitleblue" style="margin-top:40px;">笔记默认字体</div>
+        <div style="margin-top:19px"><select id="font" class="inputstyle" onblur="onFontChange()" style="width:152px;height:32px"></select>
+            <select id="fontsize" class="inputstyle" onblur="onFontChange()" style="margin-left:32px;height:32px;width:97px"></select></div>
+		<div class="subtitleblue" style="margin-top:40px">有道云笔记&nbsp;&nbsp;本地文件</div>
+		<div><input id="SetLocalPath" class="inputstyle" readonly="readonly" style="margin-top:19px;height:32px;width:248px"/>
+            <span id="selectDir" onclick="selectdir()" class="selectDirPos" style="top:12px;left:4px"></span></div>
+		<div style="margin-top:16px">
+			<button id="localPathBtn" class="greybutton maxplusRoundBtn" disabled="true" onclick="changedir()">保存路径</button>
+			<button class="greybutton maxplusRoundBtn" style="margin-left:36px" onclick="opendir()">打开文件夹</button>
+		</div>
+	</div>
+	
+	<div class="opttab-content" style="margin-left:153px;margin-top:-172px;display:none" id="optiontab2show">
+	    <div class="subtitleblue">网络连接</div>
+	    <div class="userattr" style="margin-top:19px"><label class="checkbox_label"><input type="checkbox" id="UseProxy">&nbsp;&nbsp;使用HTTP代理</label></div>
+		<div class="userattr" style="margin-top:19px"><span>地址</span>
+			<span style="margin-left:16px"><input id="ProxyAddr" class="inputstyle" style="height:32px; width:176px"/></span>
+			<span style="margin-left:20px">端口</span>
+			<span><input id="ProxyPort" class="inputstyle" style="height: 32px; width: 176px;margin-left:16px"/></span>
+		</div>
+		<div class="userattr" style="margin-top:36px"><span>用户名</span>
+			<span><input id="ProxyName" class="inputstyle" style="height: 32px; width: 176px;margin-left:4px"/></span>
+			<span style="margin-left:20px">密码</span>
+			<span><input id="ProxyPswd" class="inputstyle" type="password" style="height: 32px; width: 176px;margin-left:16px"/></span>
+		</div>
+		<div style="float:left;color:#ff9494;font-size:12px;margin-top:8px" id="ProxyTip"></div>
+        <div align="right" style="margin-right:70px;margin-top:24px" >
+            <button class="greybutton midRoundBtn" id="buttonproxy" onclick="testproxy()" style="margin-right:24px">测试</button>
+            <button class="greybutton midRoundBtn" onclick="saveproxy()">保存</button>
+        </div>
+	</div>
+	
+	<div class="opttab-content" style="margin-left:153px;margin-top:-172px;overflow-y:hidden;display:none" id="optiontab3show">
+	    <div class="subtitleblue">全局热键</div>
+		<div style="margin-top:18px" class="userattr">
+            <span>激活窗口</span><input tabindex="-1" class="boxsize inputstyle" onpaste="return false" style="margin-left:71px;" id="Active"/>
+            <span id="closeBtn" onclick="clearHotkey('Active')" class="closeBtnPos"></span>
+            <span id="ActiveTip" class="color9" style="margin-left:-165px" onclick="ClickHotkeyText('Active')"><span>
+		</div>
+		<div style="margin-top:8px" class="userattr">
+			<span>截屏并隐藏笔记窗口</span><input tabindex="-1" class="boxsize inputstyle" onpaste="return false" style="margin-left:11px" id="PrintScreen"/>
+            <span id="closeBtn" onclick="clearHotkey('PrintScreen')" class="closeBtnPos"></span>
+            <span id="PrintScreenTip" class="color9" style="margin-left:-165px;"onclick="ClickHotkeyText('PrintScreen')"><span>
+        </div>
+	    <div  style="margin-top:24px" class="subtitleblue">快捷键</div>
+		<div style="margin-top:18px" class="userattr">
+            <span>同步</span><input tabindex="-1" class="boxsize inputstyle" onpaste="return false" style="margin-left:95px" id="Sync"/>
+            <span id="closeBtn" onclick="clearHotkey('Sync')" class="closeBtnPos"></span>
+            <span id="SyncTip" class="color9" style="margin-left:-165px;"onclick="ClickHotkeyText('Sync')"><span>
+		</div>
+		<div style="margin-top:8px" class="userattr">
+			<span>新建笔记</span><input tabindex="-1" class="boxsize inputstyle" onpaste="return false" style="margin-left:71px" id="NewNote"/>
+            <span id="closeBtn" onclick="clearHotkey('NewNote')" class="closeBtnPos"></span>
+            <span id="NewNoteTip" class="color9" style="margin-left:-165px;"onclick="ClickHotkeyText('NewNote')"><span>
+        </div>
+		<div style="margin-top:8px" class="userattr">
+			<span>收起侧边栏</span><input tabindex="-1" class="boxsize inputstyle" onpaste="return false" style="margin-left:59px" id="OnlyShowEditor"/>
+            <span id="closeBtn" onclick="clearHotkey('OnlyShowEditor')" class="closeBtnPos"></span>
+            <span id="OnlyShowEditorTip" class="color9" style="margin-left:-165px;"onclick="ClickHotkeyText('OnlyShowEditor')"><span>
+        </div>
+		<div style="margin-top:8px" class="userattr">
+			<span>展开侧边栏</span><input tabindex="-1" class="boxsize inputstyle" onpaste="return false" style="margin-left:59px" id="ShowAll"/>
+            <span id="closeBtn" onclick="clearHotkey('ShowAll')" class="closeBtnPos"></span>
+            <span id="ShowAllTip" class="color9" style="margin-left:-165px;"onclick="ClickHotkeyText('ShowAll')"><span>
+        </div>
+		<div style="margin-top:8px" class="userattr">
+			<span>插入当前时间</span><input tabindex="-1" class="boxsize inputstyle" onpaste="return false" style="margin-left:47px" id="InsertTime"/>
+            <span id="closeBtn" onclick="clearHotkey('InsertTime')" class="closeBtnPos"></span>
+            <span id="InsertTimeTip" class="color9" style="margin-left:-165px;"onclick="ClickHotkeyText('InsertTime')"><span>
+        </div>
+		<div><button class="greybutton maxRoundBtn"onclick="resetHotkey()" style="margin-left:200px;margin-top:24px">恢复默认值</button></div>
+    </div>
+	
+</div>
+
+<div style="display:none;position:absolute;left:128px;font-size:14px;height:490px;width:688px"  id="tab4show" class="tab-content userinfobg"> 
+	<div class="" style="overflow-y:hidden;margin-left:32px" id="import">
+		<div class="subtitleblue" style="margin-top:10px">导入</div>
+		<button id="importYnote" onclick="importynote()" class="imexportBtn" style="margin-top:18px"><span style="position:relative;top:28px">有道云笔记文件</span></button>
+		<button id="imexportEvernote" onclick="importevernote()" class="imexportBtn" style="margin-left:32px"><span style="position:relative;top:28px">印象笔记文件</span></button>
+		<button id="imexportOther" onclick="importothers()" class="imexportBtn" style="margin-left:32px;"><span style="position:relative;top:28px">有道云笔记其他账户数据</span></button>
+		
+		<div class="subtitleblue" style="margin-top:32px">导出</div>
+		<button id="exportYnote" onclick="exportynote()" class="imexportBtn" style="margin-top:18px"><span style="position:relative;top:28px">有道云笔记文件</span></button>
+		<button id="imexportAll" onclick="exportall()" class="imexportBtn" style="margin-left:32px"><span style="position:relative;top:28px">导出全部数据</span></button>
+		<div style="height: 20px"></div>
+	</div>
+</div>
+
+    <div style="display:none;position:absolute;left:128px;font-size:14px;height:490px;width:688px"  id="tab5show" class="tab-content userinfobg"> 
+        <div style="margin-left:32px">
+			<div class="subtitleblue" style="margin-top:10px">关于我们</div>
+		    <div class="userattr2" style="width:600px;margin-top:15px">有道云笔记，便捷、安全、稳定的云端文档管理方法。</div>
+			<div class="userattr2" style="width:600px">多种记录方式随意选择，文字、拍照、手写、录音；告别数据线；支持office、PDF等各类文档，无需下载即可直接编辑查看。</div>
+		    <div class="userattr2" style="width:600px">网易出品云笔记软件，优质长效保证笔记内容三备份存储，不用担心内容丢失。密码保护功能防止内容泄露，贴心保护用户隐私。支持笔记本地导入导出，更安全更自由。</div>
+            <span>
+                <a class="blueline1" onclick="viewLicense()" style="text-decoration:none;" href="https://note.youdao.com/license.html" target="_blank">《有道云笔记服务条款》</a>
+                <a class="blueline1" onclick="viewLicenseSecrecy()" style="text-decoration:none;" href="https://note.youdao.com/license-secrecy.html" target="_blank">《有道隐私政策》</a>
+                <a class="blueline1" onclick="viewLicenseMinors()" style="text-decoration:none;" href="https://note.youdao.com/juvenile.html" target="_blank">《未成年人个人信息保护政策》</a>
+            </span>
+	        <div class="subtitleblue" style="margin-top:32px">在线升级</div>
+	        <div class="userattr2" style="margin-top:18px" id="curVersion"></div>
+            <div style="margin-top:12px;width:128px;height:32px">
+            <span id="updateIcon" onclick="CheckUpdate()" class="updateIconPos"></span></div>
+	        <div class="subtitleblue" style="margin-top:40px">更新日志</div>
+	        <div class="userattr" style="margin-top:15px"><a class="blueline1" onclick="viewLog()" href="http://note.youdao.com/changelog.html?auto=1" target="_blank">查看更新日志</a></div>
+		</div>
+    </div>
+</div>
+
+<script type="text/javascript" src="cropPortrait/js/jquery.min.js"></script>
+<script type="text/javascript" src="dataRes/locationData.js"></script>
+<script type="text/javascript" src="OptionMenu/UserInfoHandler.js"></script>
+<script type="text/javascript" src="OptionMenu/SettingsHandler.js"></script>
+<script type="text/javascript" src="OptionMenu/OthersHandler.js"></script>
+<script type="text/javascript" src="OptionMenu/AccountSafeHandler.js"></script>
+<script type="text/javascript" src="OptionMenu/Hotkey.js"></script>
+<script type="text/javascript">	
+
+    //快捷键相关统一响应事件
+	$('.boxsize').click(function() {
+        onClickHotkey(this.id);
+	})
+    
+	$('.boxsize').blur(function() {
+        QuitListen(this.id);
+	})
+  
+ 	$('.boxsize').select(function() {
+        onSelectHotkey(this.id);
+	})
+    
+    //自定义radio checkbox 点击事件响应
+    $(function(){
+        $("input[type='radio']").click(function(){
+            $("input[type='radio'][name='"+$(this).attr('name')+"']").parent().removeClass("checked");
+            $(this).parent().addClass("checked");
+        });
+    });
+
+    $(function(){
+        $("input[type='checkbox']").click(function(){
+		    var bCheck = $(this).parent().hasClass("checked");
+			var id = $(this).attr('id');
+            
+            if(id == "loginTip1" || id == "loginTip2")
+            {
+                HandleLoginTip(id);
+                return;
+            }
+ 
+            var value;
+			if(bCheck == true)
+			{
+                value = '0';
+				$(this).parent().removeClass("checked");
+			}
+			else
+			{
+                value = '1';
+				$(this).parent().addClass("checked");
+			}
+            
+            if(id == "UseProxy")
+            {
+                SetProxyOptions(bCheck);
+                return;
+            }
+			else if(id == "SetTimeLock")
+			{
+				document.getElementById("SetIntevals").disabled = bCheck;
+			}
+			else if(id == "SetTimeReadLock")
+			{
+				document.getElementById("SetReadIntevals").disabled = bCheck;			
+			}
+
+            SendMessageToClient('setCheckbox',id,value);
+        });
+    });
+
+	//左中两栏 tab onclick切换
+	var divItems = document.getElementsByClassName("tab");
+	var $contents = $('.tab-content');
+	$contents.slice(1).hide();
+	
+	$('.tab').click(function() {
+		var $target = $('#' + this.id + 'show').show();
+		$contents.not($target).hide();
+		
+		for(var i=0; i < divItems.length; i++){
+			var item = divItems[i];
+			item.style.backgroundColor = '#3b4d62';
+			item.className = item.className.replace( 'leftlinesel' , 'leftline' );
+		}
+		this.style.backgroundColor = '#E8F0FF';		
+		this.className = this.className.replace( 'leftline' , 'leftlinesel' );
+		
+	})
+		
+	var saferounds = document.getElementsByClassName("round");
+	var safesubitems = document.getElementsByClassName("safetab");
+	var $safecontents = $('.safetab-content');
+	$safecontents.slice(1).hide();
+	
+	$('.safetab').click(function() {
+        OnClickSafeDot(this.id);
+	})
+    
+    function OnClickSafeDot(id)
+    {
+		var $target = $('#' + id + 'show').show();
+		$safecontents.not($target).hide();
+		
+		for(var i=0; i < saferounds.length; i++){
+			var item = saferounds[i];
+			item.className = item.className.replace( 'blueround' , 'grayround' );
+		}
+		for(var i=0; i < safesubitems.length; i++){
+			var item = safesubitems[i];
+			item.className = item.className.replace( 'color6' , 'color9' );
+		}		
+		var roundid = id + 'round';
+		var obj = document.getElementById(roundid);
+        var obj2 = document.getElementById(id);
+		obj.className = obj.className.replace( 'grayround' , 'blueround' );
+		obj2.className = obj2.className.replace( 'color9' , 'color6' );
+    }
+	
+	var optrounds = document.getElementsByClassName("round2");
+	var optsubitems = document.getElementsByClassName("opttab");
+	var $optcontents = $('.opttab-content');
+	$optcontents.slice(1).hide();
+	
+	$('.opttab').click(function() {
+        OnClickOptDot(this.id);
+	})
+    
+    function OnClickOptDot(id)
+    {
+        var $target = $('#' + id + 'show').show();
+		$optcontents.not($target).hide();
+
+		for(var i=0; i < optrounds.length; i++){
+			var item = optrounds[i];
+			item.className = item.className.replace( 'blueround' , 'grayround' );
+		}
+		for(var i=0; i < optsubitems.length; i++){
+			var item = optsubitems[i];
+			item.className = item.className.replace( 'color6' , 'color9' );
+		}		
+		var roundid = id + 'round';
+		var obj = document.getElementById(roundid);
+        var obj2 = document.getElementById(id);
+		obj.className = obj.className.replace( 'grayround' , 'blueround' );
+		obj2.className = obj2.className.replace( 'color9' , 'color6' );
+    }
+	
+	//end
+    
+    initDistrictView();	
+
+	InitFontSelectView();
+
+    // msg to function map;
+	//functions with 1param
+	var fnMap1 = {
+		"setInitTab" : InitTab,
+		"setDistrict" : SetDistrict,
+		"setGender" : SetGender,
+		"SetHotKey" : InitHotkey,
+        "setUpdateUserInfo" : OnUpdateUserInfo,
+        "SetBindRes" : SetBindRes,
+        "SetKeyDisable" : SetKeyDisable,
+        "SetReadKeyDisable" : SetReadKeyDisable,
+        "SetCaptchaRes" : SetCaptchaRes,
+    }
+
+	//functions with 2params
+	var fnMap2 = {
+		"setVip"    : SetVip,
+		"SetSpaceUsed" : SetSpace,
+        "SetProxyAccount" :SetProxyAccount,
+        "OptDevice" : OptDevice,
+        "SetDevices" : SetDevices,
+        "setUserInfo"  : HandleUserInfo,
+        "setCheckInSpace" : setCheckInSpace,
+    }
+    
+    //functions with 3params
+    var fnMap3 = {
+		"SetUserProxy" : SetProxy,
+        "SetBindStatus": SetBindStatus,
+        "SetLock"      : SetLock, 
+        "SetReadLock"  : SetReadLock,
+    }
+    
+	var totalsec = 0;
+	var spacequote = 0;
+    function handleMessageFromClient(msgType, param1, param2, param3) {
+        console.log(msgType, param1, param2);
+		if(msgType in fnMap1)
+		{
+	        fnMap1[ msgType ](param1);
+		    return;
+		}
+		
+		if(msgType in fnMap2)
+		{
+	        fnMap2[ msgType ](param1, param2);
+		    return;
+		}
+
+		if(msgType in fnMap3)
+		{
+	        fnMap3[ msgType ](param1, param2, param3);
+		    return;
+		}
+		
+		if (msgType == "setPortrait") {
+            obj = document.getElementById("portrait");
+            obj.src = "data:image/png;base64," + param1;
+        }
+        else if(msgType == "isTryVipUser")
+        {
+            obj = document.getElementById("vipText");
+            obj.value = "试用会员";
+        }
+        else if(msgType == "ToCloseWnd")
+        {
+            ToCloseWnd();
+        }
+		else if (msgType == "SetTime")
+		{
+			totalsec = parseInt(param1);
+			spacequote = parseInt(param2);
+		}
+		else if(msgType == "SetVersion")
+		{
+			var value = 'Windows桌面版v' + param1;
+			document.getElementById("curVersion").innerHTML = value;
+		}
+        else if(msgType == "SetLoginPhoneNum")
+        {
+            console.log("SetLoginPhoneNum");
+            document.getElementById("safetab4show1").style.display = "none";
+            document.getElementById("safetab4show2").style.display = "inline-block"
+            document.getElementById("safetab4show3").style.display = "none";
+            var value = '已绑定&nbsp;' + param1;
+            document.getElementById("BindLoginPhoneInfo").innerHTML = value;
+
+            document.getElementById("reddot").style.display = "none";  
+            document.getElementById("SubReddot").style.display = "none";  
+        }
+        else if(msgType == "ShowRedCircle")
+        {
+            if(param1 == '1')
+            {
+                document.getElementById("redcircle").style.display = "block";            
+            }
+            
+            if(param2 == "true")
+            {
+                document.getElementById("btnCheckin").value = "已签到";
+                document.getElementById("btnCheckin").disabled = true;
+                document.getElementById("checkinTip").style.display = "none";
+            }
+            else
+            {
+                document.getElementById("redcircle").style.display = 'inline-block';
+            }
+
+        }
+        else if(msgType == "ShowRedDot")
+        {
+            document.getElementById("reddot").style.display = "block";  
+            document.getElementById("SubReddot").style.display = "block";  
+        }
+        else if(msgType == "ShowBindError")
+        {
+            document.getElementById("safetab4show1").style.display = "none";
+            document.getElementById("safetab4show2").style.display = "none";
+            document.getElementById("safetab4show3").style.display = "inline-block"
+        }
+        else if(msgType == "UseHighDpi")
+        {
+            RplHighDpiPics();
+        }
+		else if(msgType == "SetFont")
+		{
+			document.getElementById("font").value = param1;
+		    document.getElementById("fontsize").value = param2;
+		}
+		else if(msgType == "SetProxyResult")
+		{
+            document.getElementById("ProxyTip").innerHTML = param1;
+            document.getElementById("buttonproxy").disabled = false;
+		}
+        else if(msgType == "SetNewDir")
+        {
+            document.getElementById("SetLocalPath").value = param1;
+            document.getElementById("localPathBtn").disabled = false;       
+        }
+        else if(msgType == "SetIsUrsAccount")
+        {
+            if(param1 == "0")
+            {
+                document.getElementById("loginPswd").style.display = "none";
+            }
+        }
+		else if(msgType == "SetIntevals" || msgType == "SetReadIntevals" || msgType == "SetLocalPath")
+		{
+			document.getElementById(msgType).value = param1;
+		}
+		else if (msgType=="SetAutoRun" || msgType=="SetAutoUpdate" || msgType=="SetMinToTray")
+		{
+			if(param1 == "1")
+			{
+				addClass(msgType);
+			}
+        }
+		else{
+			document.getElementById(msgType).innerHTML = param1;
+		}
+    }
+    
+    function SetLock(param1, param2, param3)
+    {
+        if(param1 == "1")
+        {
+            addClass("SetMinLock");
+        }
+        if(param2 == "1")
+        {
+            addClass("SetTimeLock");
+        }
+        else
+        {
+            document.getElementById("SetIntevals").disabled = true;
+        }
+        if(param3 == "1")
+        {
+            addClass("SetSwitchLock");
+        }
+    }
+
+    function SetReadLock(param1, param2, param3)
+    {
+        if(param1 == "1")
+        {
+            addClass("SetMinReadLock");
+        }
+        if(param2 == "1")
+        {
+            addClass("SetTimeReadLock");
+        }
+        else
+        {
+            document.getElementById("SetReadIntevals").disabled = true;
+        }
+        if(param3 == "1")
+        {
+            addClass("SetSwitchReadLock");
+        }
+    }
+    
+	function addClass(id)
+	{
+        var obj = document.getElementById(id);
+        $(obj).parent().addClass("checked");
+	}
+    
+    function ToCloseWnd() 
+    {
+        if(listenKey == "1")
+        {
+            QuitListen(selKey);
+        }
+
+        for(var i=0;i<7;i++)
+        {
+            var key = hotkeyPair[i];
+            var value = hotkeyValue[i];
+            SendMessageToClient("SetHotkey",key, value.toString());
+        }
+        
+        var value = document.getElementById("SetIntevals").value;
+        if(value != "")
+        {
+            SendMessageToClient('setCheckbox','SetIntevals',value);        
+        }
+        value = document.getElementById("SetReadIntevals").value;
+        if(value != "")
+        {
+            SendMessageToClient('setCheckbox','SetReadIntevals',value);        
+        }
+        
+        var obj = document.getElementById("font");
+        var objsize = document.getElementById("fontsize");
+        SendMessageToClient('setFont',obj.value,objsize.value);        
+        
+        SendMessageToClient("quitOK");
+    }
+
+    function RplHighDpiPics()
+    {
+        var obj = document.getElementById("updateIcon");
+        obj.style.backgroundImage="url(res/Btn_Update@2x.png)";
+
+        obj = document.getElementById("closeBtn");
+        obj.style.backgroundImage="url(res/btn_x@2x.png)";
+    
+        obj = document.getElementById("checkinTip");
+        obj.src="res/checkin@2x.png";
+        
+        obj = document.getElementById("selectDir");
+        obj.style.backgroundImage="url(res/SelectDir@2x.png)";
+        
+        obj = document.getElementById("vipIcon");
+        obj.style.backgroundImage="url(res/vipIcon@2x.png)";
+
+        obj = document.getElementById("novipIcon");
+        obj.style.backgroundImage="url(res/vipIcon@2x.png)";
+        
+        obj = document.getElementById("redcircle");
+        obj.src="res/RedDot@2x.png";
+         
+        obj = document.getElementById("importYnote");
+        obj.style.backgroundImage="url(res/imexport_note@2x.png)"; 
+        obj = document.getElementById("exportYnote");
+        obj.style.backgroundImage="url(res/imexport_note@2x.png)";         
+        obj = document.getElementById("imexportOther");
+        obj.style.backgroundImage="url(res/imexport_other@2x.png)";      
+        obj = document.getElementById("imexportEvernote");
+        obj.style.backgroundImage="url(res/imexport_evernote@2x.png)";      
+        obj = document.getElementById("imexportAll");
+        obj.style.backgroundImage="url(res/imexport_all@2x.png)"; 
+
+        var divItems = document.getElementsByClassName("checkbox_label");
+        for(var i=0; i < divItems.length; i++){
+            divItems[i].style.backgroundImage="url(res/checkbox@2x.png)";
+        }
+        
+        divItems = document.getElementsByClassName("errorIconPos");
+        for(var i=0; i < divItems.length; i++){
+            divItems[i].style.backgroundImage="url(res/error@2x.png)";
+        }  
+    
+    }
+
+</script>
+<script type="text/javascript" src="utility/TimeUtility.js"></script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/YNoteCommunicationInterface.js"></script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/CefSupportScript.js"></script>
+</body>
+</html>

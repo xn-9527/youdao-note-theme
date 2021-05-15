@@ -1,0 +1,72 @@
+﻿        .editor-area {
+            padding: 36px 36px;
+        }
+        .note-title {
+            font-size: 24px;
+            margin: 0 auto 20px;
+            text-align: center;
+        }
+        table {
+            /**
+             * override the default value (medium) of font-size
+             * fix: https://dev.corp.youdao.com/bugs/show_bug.cgi?id=77940
+             * */
+            font-size: inherit !important;
+            border-collapse: collapse !important;
+            /** --1. 光标可见，不与border 重合--*/
+            margin-top: 10px !important;
+            margin-bottom: 10px !important;
+            border: 1px solid #333 !important;
+            display: table !important;
+            max-width: 100% !important;
+        }
+	img {
+	    max-width: 100% !important;
+	}
+        table td, table th{
+            word-break: break-all !important;
+            border: 1px solid #333 !important;
+            padding: 5px 10px !important;
+            min-height: 25px !important;
+            height: 25px !important;
+        }
+        table td>div {
+            min-width: 2px !important;
+        }
+        a {
+            color: #306693;
+        }
+        .note-todo {
+            height: 20px;
+            padding: 5px 0;
+        }
+        .note-attachment {
+            height: 20px;
+            padding: 8px 0;
+        }
+        .note-todo span, .note-attachment span {
+            vertical-align: top;
+        }
+        .note-todo .note-todo-text {
+            padding-left: 8px;
+            color: #000;
+        }
+        .note-todo.checked .note-todo-text {
+            line-height: 18px;
+            color: #b0b0b0;
+        }
+        .note-attachment-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+        }
+        .note-attachment .note-attachment-text {
+            padding-left: 5px;
+            line-height: 22px;
+            font-size: 12px;
+            color: #333;
+        }
+        .note-todo-checkbox {
+            width:18px;
+            height:18px;
+        }

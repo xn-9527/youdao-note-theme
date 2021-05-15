@@ -1,0 +1,111 @@
+body {
+    background-color: #1F160E;
+    margin: 0;
+    padding: 0;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.clearfix{
+    *zoom:1;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+
+//lightbox begin
+
+img {
+    border: 0;
+}
+
+.container {
+    width: 720px;
+    height: 420px;
+    overflow: hidden;
+    position: relative;
+}
+
+.img_list {
+    margin: 0;
+    padding: 0;
+}
+
+.img_list li {
+    width: 720px;
+    height: 420px;
+    list-style:none;
+}
+
+.slide_buttomNav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.slide_buttom_left {
+    width: 50%;
+    text-decoration: none;
+    display: block;
+    height: 420px;
+    background: url('../images/back2.png') no-repeat scroll 0% 50% transparent;
+}
+
+.slide_buttom_left:hover {
+    background: url('../images/back1.png') no-repeat scroll 0% 50% transparent;
+}
+
+.slide_buttom_right {
+    width: 50%;
+    text-decoration: none;
+    display: block;
+    height: 420px;
+   background: url('../images/forward2.png') no-repeat scroll 100% 50% transparent;
+}
+
+.slide_buttom_right:hover {
+    background: url('../images/forward1.png') no-repeat scroll 100% 50% transparent;
+}
+
+.close_btm {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.close_lightbox {
+    background-image: url(../images/close2.png);
+    width: 20px;
+    height: 20px;
+}
+
+.close_lightbox:hover {
+    background-image: url(../images/close1.png);
+}
+
+.dot {
+    width: 6.5px;
+    height: 6.5px;
+    background: #b8def0;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    z-index: 1000;
+    position: absolute;
+    bottom: 10px;
+}

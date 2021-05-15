@@ -1,0 +1,176 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>标题</title>
+    <link type="text/css" rel="stylesheet" href="css/htmldialogbase.css"/>
+    <style>
+        #messageAndComment{
+            padding-bottom:16px;
+        }
+        
+        #message {
+            line-height: 150%;
+            word-break: break-all;
+            color: #666666;
+            margin-bottom:16px;
+        }
+
+        #messageComment {
+            word-break: break-all;
+            color: #999999;
+        }
+
+        .checkbox_label{
+            background: url(res/checkbox.png) no-repeat;
+            background-size:14px 28px;
+            display: inline-block;
+            line-height: 14px;
+            height: 14px;
+            text-indent:14px;
+            margin-right:28px;
+        }
+
+        .checked {
+            background-position: 0  -14px;
+        }
+
+        input[type='checkbox'] {
+            display:none;
+        }    
+ 
+    </style>
+</head>
+
+<body>
+<div class="content">
+    <div id="messageAndComment">
+        <div id="message">
+           <span style="color:#666666"></span>
+        </div>
+        <div id="messageComment">
+            
+        </div>
+    </div>
+    <div>
+        <label id="checkboxContainer" class="checkbox_label"><input type="checkbox" onclick="clickNoRemind()" id="checkbox">&nbsp;不再提醒</input></label>
+    <div>
+    <div class="userAction">
+        <button id="cancelButton" class="actionButton" style="margin-left: 24px" onclick="clickCancel()">取消</button>
+        <button id="OkButton" class="actionButton bluebutton" onclick="clickOk()">确定</button>
+    </div>
+    
+    <!--该div不可见，只是为了预加载资源，防止闪烁 -->
+    <div style="display: none">
+       <img src="res/btn_hover.png">
+       <img src="res/btn_active.png">
+       <img src="res/btn_disable.png">
+       <img src="res/btn_blue_hover.png">
+       <img src="res/btn_blue_active.png">
+       <img src="res/btn_blue_disable.png">
+    </div>
+</div>
+
+<script type="text/javascript">
+    String.prototype.format = function (args) {
+        var result = this;
+        if (arguments.length > 0) {
+            if (arguments.length == 1 && typeof (args) == "object") {
+                for (var key in args) {
+                    if (args[key] != undefined) {
+                        var reg = new RegExp("({" + key + "})", "g");
+                        result = result.replace(reg, args[key]);
+                    }
+                }
+            }
+            else {
+                for (var i = 0; i < arguments.length; i++) {
+                    if (arguments[i] != undefined) {
+                        var reg = new RegExp("({[" + i + "]})", "g");
+                        result = result.replace(reg, arguments[i]);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+</script>
+<script type="text/javascript">
+    var windowWidth = 0;
+    window.onresize=function(){}
+    {
+        console.log("Onresize ScreenHeight:" + window.innerHeight + " width:" + window.innerWidth);
+        setScrollHeightInner();
+    }
+    function userDefinedHandlerForMsgFromClient(msgType, param1, param2, param3){
+
+        console.log(FormatString("Accept user define message. MsgType:{0}, param:{1}, parma{2}, param{3}", msgType, param1,param2,param3));
+        if (msgType == "setText") {
+            var html = String();
+            var tcArray = JSON.parse(param1);
+            for (var i = 0; i < tcArray.length; ++i) {
+                var htmlsingle = '<span style="color:{0}"> {1}</span>';
+                var text = tcArray[i];
+                html += htmlsingle.format(text.color, text.text);
+            }
+            msgElem = document.getElementById("message");
+            msgElem.innerHTML = html;
+
+            msgComment = document.getElementById("messageComment");
+            if(param2) {
+                msgComment.innerHTML = param2;
+            }
+            if (param3 == "0") {
+                var elem = document.getElementById("cancelButton");
+                elem.style.display = "none";
+            }
+            setScrollHeightInner();
+        }
+        else if(msgType == "setWidth")
+        {
+            windowWidth = parseInt(param1);
+        }
+        else if(msgType == "setDescColor")
+        {
+            var msgdesc = document.getElementById("messageComment");
+            msgdesc.style.color = param1;
+        }
+    }
+    function setScrollHeightInner() {
+        console.log("setScrollHeightInner1:" + window.innerWidth + " width:" + windowWidth);
+        var diff = parseInt( window.innerWidth - windowWidth);
+        diff = Math.abs(diff);   // 125%、150% innerwidth会比windowwidth大1；修改一下判断条件
+        if( diff > 5 )
+        {
+            setTimeout("setScrollHeightInner()", 10);
+            return;
+        }
+        console.log("setScrollHeightInner2:" + window.innerWidth + " width:" + windowWidth);
+        var obj = document.getElementById("messageAndComment");
+        SendMessageToClient("setValue", "msgHeight", String(obj.scrollHeight));
+    };
+    function clickNoRemind(){
+        var obj = document.getElementById("checkbox");
+        var bCheck = $(obj).parent().hasClass("checked");
+        var msg;
+        if(bCheck == true)
+        {
+            msg = 'false';
+            $(obj).parent().removeClass("checked");
+        }
+        else
+        {
+            msg = 'true';
+            $(obj).parent().addClass("checked");
+        }
+        SendMessageToClient("setValue", "checkbox", msg);
+        
+    }
+</script>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+<script type="text/javascript" src="cropPortrait/js/jquery.min.js"></script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/DefaultHandlerForHtml.js"></script>
+<script type="text/javascript" src="utility/stringUtility.js"></script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/YNoteCommunicationInterface.js"></script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/CefSupportScript.js"></script>
+
+</body>
+</html>

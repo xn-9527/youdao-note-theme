@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript"
+        src="template_for_communication_with_ynote/js/CefSupportScript_without_ready.js"></script>
+<link href="MultiSelect/css/smoothness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+<style>
+body {
+    font-family: "微软雅黑";
+    font-size: 12px;
+    -webkit-user-select: none;
+    margin-left:24px;
+    margin-top:16px;
+    margin-bottom:16px; 
+    background-color:#FAFAFA;    
+}
+
+.contentFont {
+    font-family: "微软雅黑";
+    font-size: 12px;
+}
+
+.line {
+    height: 32px;
+    margin: 0px;
+    padding: 0px;
+    -webkit-user-select: none;
+    position: relative;
+    font-family: "微软雅黑";
+    font-size: 12px;
+    color: #666666;
+}
+
+.userattr {
+    width: 50;
+    display: inline-block;
+}
+
+.timeValue{
+    position: relative; 
+    left:10px; 
+}
+
+.notebook{
+    position: relative; 
+    left:16px; 
+}
+
+#addTag {
+    display: inline-block;
+    line-height: 23px;
+    color: #3a3a3a;
+    margin-bottom: 5px;
+}
+
+.tags .tag {
+    position: relative;
+    display: inline-block;
+    height: 17px;
+
+    border: 1px solid #c2dbec;
+    padding: 0px 15px;
+    border-radius: 50px;
+    margin-top: 2px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding-bottom: 2px;
+}
+
+.tags .tag:hover {
+    color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(200, 0, 0, 0.1);
+    background-image: url(res/tag_del_hover.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(res/tag_del_hover.png);
+    border: 1px solid rgba(200, 0, 0, 0.1);
+    cursor: pointer;
+
+}
+
+.tags .tag:hover .tag-close {
+    display: block;
+
+}
+
+.tags .tag .tag-close {
+    display: none;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 8px;
+    height: 8px;
+    background: url("./pic/delete-tag.png");
+    cursor: pointer;
+}
+
+#tagInput {
+    display: none;
+    height: 17px;
+    margin-bottom: 5px;
+}
+
+.ui-helper-hidden-accessible {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+#noteSource:hover {
+    text-decoration: underline;
+}
+
+.showHistory:hover {
+    color: rgb(123, 170, 229);
+}
+
+.showHistory {
+    color: rgb(83, 142, 215);
+}
+
+#showCount:hover {
+    color: rgb(123, 170, 229);
+}
+
+#showCount {
+    color: rgb(83, 142, 215);
+}
+
+.edit {
+    position: relative;
+    background: url(res/edit.png);
+    width: 10px;
+    height: 10px;
+    left: 8px;
+    top: -2px;
+    display: inline-block;
+}
+
+.edit:hover {
+    background: url(res/edit.png);
+    background-position: center;
+    width: 10px;
+    height: 10px;
+}
+
+.edit:active {
+    background: url(res/edit.png);
+    background-position: 0px 20px;
+    width: 10px;
+    height: 10px;
+}
+
+.add {
+    position: absolute;
+    background: url(res/plus.png);
+    background-position: center;
+    width: 10px;
+    height: 10px;
+    top: 6px;
+}
+
+.add {
+    position: absolute;
+    background: url(res/plus.png);
+    background-position: 0px 20px;
+    width: 10px;
+    height: 10px;
+    top: 6px;
+}
+
+#notebookName {
+    font-family: "微软雅黑";
+    font-size: 12px;
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+    background: transparent;
+}
+
+.limitShow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80px;
+    display: inline-block;
+}
+
+.hoverHand:hover {
+    cursor: pointer;
+}
+
+.hoverDefault:hover {
+    cursor: default;
+}
+
+.disable1 {
+    color: rgb(162, 162, 162);
+}
+
+.tip {
+    color: #5576BD;
+}
+
+.ui-autocomplete {
+    padding: 0px !important;
+    margin: 0px;
+    border: 1px solid rgb(169,199,238);
+}
+.ui-menu .ui-menu-item{
+    line-height: 24px;
+    min-height: 24px;
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+}
+
+.ui-state-focus {
+    background: rgb(211,230,253) !important;
+    border: none !important;
+    margin: 0px !important;
+     border-radius: 0px;
+}
+
+</style>
+</head>
+<body style="width:205px; overflow-y:hidden; overflow-x:hidden;">
+
+<div class="line">
+    <span class="userattr">来源&nbsp;:</span>
+    <span class="hoverHand tip" id="sourceTip" onclick="OnSourceTipClick()" style="position: relative; left:16px;">点击添加来源</span>
+    <span id="noteSourceOuter" style="display: none;  position:absolute; left:52px;">
+        <span class="hoverHand tip" id="noteSource" onclick="OnNoteSourceClick()"
+          style="display:inline-block;max-width: 120px;white-space:nowrap;overflow:hidden;text-overflow: ellipsis">测试
+        </span>  
+        <span id="editsourceButton" class="edit" onclick="OnNoteSourceClickEdit()"></span>
+        </span>
+    </span>
+    <input type="text" id="sourceEdit"
+           style="display:none; position: absolute;width:112px;left:52px; height: 22px;top:-3px;font-family: '微软雅黑';"
+           onkeydown="OnSourceEditKeydown();" onblur="OnSourceEditBlur()"/>
+</div>
+
+<div class="line">
+    <span class="userattr">作者&nbsp;:</span>
+    <span class="hoverHand tip" id="authorTip" onclick="OnAuthorTipClick()" style="position: relative; left:16px;">点击添加作者
+        </span>
+    <span class="hoverdefault" id="noteAuthor" onclick="OnNoteAuthorClick()"
+          style="display:none;position: absolute; left: 52px;white-space:nowrap;max-width: 100px;overflow:hidden;text-overflow: ellipsis">测试</span>
+    <input type="text" id="authorEdit"
+           style="display:none; position: absolute; width:112px; left:52px; height: 22px;top:-5px;font-family: '微软雅黑';"
+           onkeydown="OnAuthorEditKeydown()" onblur="OnAuthorEditBlur()"/>
+</div>
+
+<div class="line">
+    <span class="userattr">创建时间&nbsp;:</span>
+    <span class="hoverDefault timeValue" id="createTime">2013/11/04 14:27</span>
+</div>
+
+<div class="line">
+    <span class="userattr">修改时间&nbsp;:</span>
+    <span class="hoverDefault timeValue" id="updateTime">2013/11/04 14:27</span>
+</div>
+
+<!--<div style="position:relative; top:-2px;">
+    <span class="userattr">标签&nbsp;:</span>
+
+    <span id="addTag" style="display: inline-block;position: relative; left:35px;" onclick="OnClickAddTag(this)">
+        <div style="display: inline-block; width:10px"><span class="add"></span>
+        </div><span id="addTagTip" class="hoverHand tip">&nbsp;点击添加标签...</span></span>
+
+    <input id="tagInput" type="text" maxlength="20" placeholder="以逗号分隔，回车确认" autocomplete="off"
+           style="display: none;position: relative; left:30px; width:128px" onkeydown="OnTagInputKeydown(this)"
+           onblur="OnTagInputBlur(this)">
+
+    <div>
+        <div class="tags" style="padding-left: 72px" id="tags">
+
+        </div>
+    </div>
+
+</div> -->
+
+<!--<div style="height: 8px"></div>-->
+<div class="line" style="position:relative; top:-2px;">
+    <span class="userattr">内容大小&nbsp;:</span>
+    <span class="hoverDefault timeValue" id="fileSize">25k</span>
+</div>
+<div class="line" style="position:relative; top:-2px;">
+    <span class="userattr">文件夹&nbsp;:</span>
+    <span class="hoverDefault notebook" id="notebookName" style="position: absolute; left: 60px;white-space:nowrap;max-width: 160px;overflow:hidden;text-overflow: ellipsis">产品设计</span>
+</div>
+
+<!--<div class="line">-->
+<!--<span class="userattr">显示&nbsp;:</span>-->
+<!--<select id="scaleSelect" onchange="OnScaleSelectChange(this)" style="position: relative; left:30px">-->
+<!--<option value ="100">100%</option>-->
+<!--<option value ="110">110%</option>-->
+<!--<option value ="125">125%</option>-->
+<!--<option value ="150">150%</option>-->
+<!--<option value ="175">175%</option>-->
+<!--<option value ="200">200%</option>-->
+<!--<option value ="250">250%</option>-->
+<!--<option value ="300">300%</option>-->
+<!--<option value ="400">400%</option>-->
+<!--<option value ="500">500%</option>-->
+<!--</select>-->
+<!--</div>-->
+
+<!--<div class="line" id="history">
+    <span class="userattr">历史&nbsp;:</span>
+    <span class="hoverHand showHistory" id="showHistory" onclick="OnNoteHistoryClick()"
+          style="position: relative; left:35px;">查看历史版本</span>
+</div> -->
+
+<!--<div class="line">
+    <span class="userattr">字数&nbsp;:</span>
+    <span class="hoverHand" id="showCount" onclick="OnNoteCharNumClick()"
+          style="position: relative; left:35px">查看统计</span>
+</div>-->
+
+<script type="text/javascript" src="MultiSelect/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="MultiSelect/js/jquery-ui-1.10.4.custom.min.js"></script>
+
+<script type="text/javascript" src="template_for_communication_with_ynote/js/YNoteCommunicationInterface.js"></script>
+<script type="text/javascript" src="noteInfoDetail/scripts/noteInfo.js"></script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/CefSupportScript_ready.js"></script>
+</body>
+</html>

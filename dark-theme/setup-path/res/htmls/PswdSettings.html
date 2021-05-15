@@ -1,0 +1,121 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>标题</title>
+    <link type="text/css" rel="stylesheet" href="css/htmldialogbase.css"/>
+    <style>
+		.boxsize{
+			width:176px;
+			height:32px;
+		}
+		
+		.pswdinput{
+			width:272px;
+			height:32px;
+		}
+		
+        .line {
+			font-family:'Microsoft Yahei';
+            font-size: 12px;
+            color: #666666;
+            letter-spacing: 0;
+            line-height: 12px;
+        }
+		
+		.btnSize{
+			height:32px;
+			width:72px;
+			border-radius:32px;
+		}
+		
+		.blueline{
+		    font-family: MicrosoftYaHei;
+            font-size: 12px;
+            color: #5576BD;
+            letter-spacing: 0;
+            line-height: 15px;
+		}
+		
+		.blueline:hover{
+			cursor:pointer;
+		}
+		
+    </style>
+</head>
+
+<body>
+
+<div style="overflow-x:hidden;overflow-y:hidden;margin-left:32px">
+    <div style="margin-top:18px"><span class="line">请输入原密码</span><input class="pswdinput" style="margin-left:32px"type="password" id="pswdOld"/></div>
+    <div style="margin-top:24px"><span class="line">请输入新密码</span><input class="pswdinput" style="margin-left:32px"type="password" id="pswd1"/></div>
+    <div style="margin-top:24px"><span class="line">请再次确认新密码</span><input class="pswdinput" style="margin-left:8px"type="password" id="pswd2"/></div>
+    <div style="color:#ff9494; display:none;margin-top:4px" id="tip"></div>
+	<div class="blueline" style="position:absolute;top:196px" onclick="delPswd()">删除阅读密码</div>	
+	<button class="bluebutton btnSize" style="position:absolute;top:186px;left:240px" onclick="save()">保存</button>
+    <button class="whitebutton btnSize"style="position:absolute;top:186px;left:336px" onclick="cancel()">取消</button>
+</div>
+
+<script type="text/javascript" src="cropPortrait/js/jquery.min.js"></script>
+<script type="text/javascript">	
+
+   
+function save() {
+	var pswdOld = document.getElementById("pswdOld");
+    var pswd1 = document.getElementById("pswd1");
+    var pswd2 = document.getElementById("pswd2");
+    var tip = document.getElementById("tip");
+	var value1 = pswd1.value;
+	var value2 = pswd2.value;
+	var valueOld = pswdOld.value;
+	var errorTip;
+	
+	if(valueOld.length == 0)
+	{
+		tip.innerHTML = '请输入原密码';
+		tip.style.display = "block";	
+	}
+	else if(value1.length == 0)
+	{
+		tip.innerHTML = '新密码为空，请重新输入';
+		tip.style.display = "block";
+	}
+    else if(value2.length == 0)
+    {
+        tip.innerHTML = '确认密码为空，请重新输入';
+        tip.style.display = "block"; 
+    }
+	else if(value1.length < 4 || value1.length > 50 || value2.length < 4 || value2.length > 50)
+	{
+		tip.innerHTML = '密码长度为4-50';
+		tip.style.display = "block";
+	}
+    else if(value1 != value2)
+	{
+		tip.innerHTML = '两次输入的密码不一致，请重新输入';
+		tip.style.display = "block";
+	}
+	else
+	{
+	    SendMessageToClient("CheckPswd",valueOld,value1);
+	}
+
+}
+
+ function handleMessageFromClient(msgType, param1, param2, param3) {
+ 		tip.innerHTML = param1;
+		tip.style.display = "block";
+ }
+
+function cancel(){
+    SendMessageToClient("quitOK");
+}
+
+function delPswd(){
+    SendMessageToClient("delReadPswd");
+}
+	
+</script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/YNoteCommunicationInterface.js"></script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/CefSupportScript.js"></script>
+</body>
+</html>

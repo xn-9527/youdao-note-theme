@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+      /* 设置滚动条的样式 */
+    ::-webkit-scrollbar {
+         width:9px;
+         background:transparent;
+    }
+    
+    /* 滚动槽 */
+    ::-webkit-scrollbar-track {
+        /*border-radius:4px;*/
+        background-color: transparent;
+    }
+    /* 滚动条滑块 */
+    ::-webkit-scrollbar-thumb {
+        /*border-radius:4px;*/
+        width: 9px;
+        background:rgba(224,227,241,1.0);
+    }
+    
+    ::-webkit-scrollbar-thumb:hover{
+        width: 9px;
+        background:rgba(187,200,228,1.0);
+    }
+</style>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link type="text/css" rel="stylesheet" href="css/htmldialogbase.css"/>
+  <script type="text/javascript"
+        src="template_for_communication_with_ynote/js/CefSupportScript_without_ready.js"></script>
+  <style>
+  </style>
+</head>
+<body style="cursor:default">
+  <div id="neterror" align="center">
+    <p><img src="./netError/error.png" /></>
+    <p>网络错误，请检查网络连接并刷新</p>
+  </div>
+  <ul id="list" class="list">
+  </ul>
+<script type="text/javascript"> 
+
+function OnItemClick(id){
+    SendMessageToClient("OnItemClick", id);
+}
+
+function OnURLClick(url){
+    SendMessageToClient("OpenLink", url);
+}
+
+function OnImgError(img)
+{
+  img.src = "res/bg-moretemplates.png";
+  img.onerror = null;
+}
+
+function handleMessageFromClient(msgType, param1, param2, param3) {
+  console.log(msgType);
+  if (msgType == "SetTemplateInfo") {
+      
+    if (param1 == "NetError") {
+        document.getElementById("neterror").style.display = 'block';
+        document.getElementById("list").style.display = 'none';
+    }
+    else{
+      document.getElementById("neterror").style.display = 'none';
+      document.getElementById("list").style.display = 'block';
+      if (param1 != "") {
+        document.getElementById("list").innerHTML = "";
+        var json = JSON.parse(param1);
+        for(var i = 0; i < json.templates.length; ++i){
+          console.log(json.templates[i].title);
+
+          var subnode = document.createElement("li");
+          subnode.setAttribute("class", "item");
+          subnode.setAttribute("style", "list-style: none;margin: 5px 5px;padding: 5px 10px;overflow:  hidden;");
+          
+          var node = document.createElement("img");
+          node.setAttribute("src", json.templates[i].thumbId); 
+          node.setAttribute("onerror", "OnImgError(this)");
+          node.setAttribute("style", "height: 120px;width: 120px;margin-right: 20px;float:  left;");//border: 1px #ccc solid;border-radius: 4px;
+
+          var node1 = document.createElement("div");
+          var node5 = document.createElement("div");
+          node5.setAttribute("style", "font-weight:bold; font-size: 15px; margin: 15px 0 5px;display:inline-block ;")
+          var textnode1 = document.createTextNode(json.templates[i].title);
+          node5.appendChild(textnode1);
+          var node6 = document.createElement("div");
+          node6.setAttribute("style", "color: #fff; background: #fe695d; width: 38px; height: 16px;;text-align: center;border-radius: 10px 0; display:inline-block ; margin-left: 5px");
+          node6.innerHTML = "NEW";
+          node1.appendChild(node5);
+          if (json.templates[i].highlight != 0) { 
+            node1.appendChild(node6);
+          }
+          
+          var node2 = document.createElement("div");
+          node2.setAttribute("class", "template_content");
+          node2.setAttribute("style", "font-size:  12px;color:  #555;");        
+          node2.innerHTML = json.templates[i].description;
+
+          var node3 = document.createElement("div");
+          node3.setAttribute("class", "btn");
+          node3.setAttribute("style", "margin: 16.8px");
+
+          var node4 = document.createElement("button");
+          node4.setAttribute("class", "bluebutton bigRoundBtn");
+          node4.setAttribute("style", "height:32px; width:96px;");//border-radius:2px; background-color:#4d94ff; border: 0px
+          node4.innerHTML = "立即使用";
+          node4.id = json.templates[i].id;
+          node4.addEventListener('click',function(){OnItemClick(this.id)});
+
+          node3.appendChild(node4);
+          if (json.templates[i].exampleText != null && json.templates[i].exampleText != "") {
+            console.log(json.templates[i].exampleText);
+            var node7 = document.createElement("button");
+            node7.setAttribute("class", "whitebutton bigRoundBtn");
+            node7.setAttribute("style", "margin-left: 10px; height:32px; ");//border-radius:2px; border: 1px solid:#248aff;
+            node7.innerHTML = json.templates[i].exampleText;
+            node7.id = json.templates[i].exampleUrl;
+            node7.addEventListener('click',function(){OnURLClick(this.id)});
+            node3.appendChild(node7);
+          }
+          
+          subnode.appendChild(node);
+          subnode.appendChild(node1);
+          subnode.appendChild(node2);
+          subnode.appendChild(node3);
+
+          document.getElementById("list").appendChild(subnode);
+        }
+      }
+      var subnodedefault = document.createElement("li");
+      subnodedefault.innerHTML = '\
+      <li class="item" style="list-style: none;margin: 10px 5px;padding: 5px 10px;overflow:  hidden;">\
+        <img src="res/bg-moretemplates.png" alt="缩略图" style="height: 120px;width: 120px;border-radius: 4px;margin-right: 20px;float:  left;">\
+          <div style="font-size: 15px;margin: 30px 0 0px;display:"><b>更多模板</b></div>\
+          <div class="template_content" style="font-size:  12px;color:  #555;">即将上线，敬请期待</div>\
+      </li>';
+      document.getElementById("list").appendChild(subnodedefault);
+
+    }
+  }
+}
+
+  
+</script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/YNoteCommunicationInterface.js"></script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/CefSupportScript.js"></script>
+</body>
+</html>

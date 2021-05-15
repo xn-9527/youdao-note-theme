@@ -1,0 +1,73 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>标题</title>
+    <link type="text/css" rel="stylesheet" href="css\htmldialogbase.css"/>
+    <style>
+    .checkbox_label{
+        background: url(res/checkbox.png) no-repeat;
+        background-size:14px 28px;
+        display: inline-block;
+        line-height: 14px;
+        height: 14px;
+        text-indent:14px;
+        margin-right:28px;
+    }
+
+    .checked {
+        background-position: 0  -14px;
+    }
+
+    input[type='checkbox'] {
+        display:none;
+    }
+    </style>
+</head>
+
+<body>
+<div class="content">
+    <div class="desc">
+         <div class="desc">
+             <p class="line">笔记中的纸张背景无法在分享页面展示，升级为会员，即可在分享页面展示更多的纸张背景！</p>
+         </div>
+    </div>
+    <div style="margin-top:20px">
+        <label class="checkbox_label" style="margin-top:14px"><input type="checkbox" onclick="noremind()" id="noremind">&nbsp;不再提示</input></label>
+        <button class="actionButton bluebutton normalBtn"  style="margin-left: 20px" onclick="clickCancel()">暂不升级</button>
+        <button class="actionButton bluebutton normalBtn"  onclick="click_ok()">升级为会员</button>
+    </div>
+</div>
+
+<script type="text/javascript" src="cropPortrait/js/jquery.min.js"></script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/CefSupportScript.js"></script>
+<script type="text/javascript"
+        src="template_for_communication_with_ynote/js/YNoteCommunicationInterface.js"></script>
+<script type="text/javascript">
+    function click_ok() {
+        SendMessageToClient("setValue", "vippage", "true");
+        SendMessageToClient("quitOK");
+    }
+    
+    function clickCancel() {
+        SendMessageToClient("quitCancel");
+    }
+    function noremind() {
+        var obj = document.getElementById("noremind");
+        var bCheck = $(obj).parent().hasClass("checked");
+        var msg;
+        if(bCheck == true)
+        {
+            msg = 'false';
+            $(obj).parent().removeClass("checked");
+        }
+        else
+        {
+            msg = 'true';
+            $(obj).parent().addClass("checked");
+        }
+
+        SendMessageToClient("setValue", "NoRemind", msg);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<html>
+
+<head>
+    <style>
+        * {
+            font-family: "Microsoft YaHei", "微软雅黑", "Microsoft JhengHei", "华文黑体", arial, sans-serif, STHeiti, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+         /* 设置滚动条的样式 */
+        ::-webkit-scrollbar {
+             width:8px;
+             background:transparent;
+        }
+        /* 滚动槽 */
+        ::-webkit-scrollbar-track {
+            border-radius:4px;
+            background-color: transparent;
+        }
+        /* 滚动条滑块 */
+        ::-webkit-scrollbar-thumb {
+            border-radius:4px;
+            width: 8px;
+            background:rgba(193,193,193,1.0);
+        }
+        ::-webkit-scrollbar-thumb:window-inactive {
+            background:rgba(193,193,193,1.0);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover{
+            background:rgba(0,0,0,0.4);
+        }
+        
+        i {
+            display: inline-block;
+        }
+        #attendee-list {
+            position: absolute;
+            padding: 0;
+            margin: 20px;
+            margin-bottom:10px;
+            background-color: #3b4d62;
+            list-style: none;
+            width: 120px;
+        }
+        
+        .attendee {
+            padding: 0 0 10px 0;
+            height:26px;
+        }
+        
+        .photo {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            vertical-align: middle;
+            position: relative;
+        }
+        
+        .portrait {
+            height: 26px;
+            width: 26px;
+            background-size: 100%;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(90, 109, 122, 0.2);
+            background-image: url('./res/DefaultUserPic.png');
+        }
+        
+        .color-bg {
+            display: block;
+            position: absolute;
+            height: 15px;
+            width: 15px;
+            top: 12px;
+            left: 12px;
+            border-radius: 50%;
+            background-color: #3b4d62;
+        }
+        
+        .color {
+            display: block;
+            position: absolute;
+            height: 7px;
+            width: 7px;
+            top: 16px;
+            left: 16px;
+            border-radius: 50%;
+        }
+        
+        .nickname {
+            padding-left: 16px;
+            width: 76px;
+            color: #7A819D;
+            height: 26px;
+            overflow: hidden;
+            line-height: 26px;
+            vertical-align: middle;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display: inline-block;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript">
+        function addClass(el, className) {
+            if (el && className) {
+                el.setAttribute('class', className);
+            }
+        }
+
+        function handleMessageFromClient(msgType, param1, param2, param3) {
+            if (msgType == "updateUserListInfo") {
+                console.log(param1);
+                var datas = JSON.parse(param1);
+                var editors = datas;
+                var listEl = document.createElement("ul");
+                listEl.setAttribute('id', 'attendee-list');
+                for (var i = 0; i < editors.length; ++i) {
+                    //console.log(editors[i].url, editors[i].color, editors[i].name);
+
+                    var attendeeEl = document.createElement('li'),
+                        photoContainer = document.createElement('span'),
+                        nickEl = document.createElement('span');
+                    addClass(attendeeEl, 'attendee');
+                    addClass(photoContainer, 'photo');
+                    addClass(nickEl, 'nickname');
+
+                    var portraitEl = document.createElement('i'),
+                        colorBgEl = document.createElement('i'),
+                        colorEl = document.createElement('i');
+                    addClass(portraitEl, 'portrait');
+                    addClass(colorBgEl, 'color-bg');
+                    addClass(colorEl, 'color');
+                    if( editors[i].portraitUrl ){
+                        portraitEl.style.backgroundImage = 'url(' + editors[i].portraitUrl + ')';
+                    }
+                    colorEl.style.backgroundColor = editors[i].lockColor;
+
+                    photoContainer.appendChild(portraitEl);
+                    photoContainer.appendChild(colorBgEl);
+                    photoContainer.appendChild(colorEl);
+                    attendeeEl.appendChild(photoContainer);
+
+                    var textEl = document.createTextNode(editors[i].nickname);
+                    nickEl.appendChild(textEl);
+                    attendeeEl.appendChild(nickEl);
+
+                    listEl.appendChild(attendeeEl);
+                }
+                document.body.appendChild(listEl);
+            }
+        }
+    </script>
+    <script type="text/javascript" src="template_for_communication_with_ynote/js/YNoteCommunicationInterface.js"></script>
+    <script type="text/javascript" src="template_for_communication_with_ynote/js/CefSupportScript.js"></script>
+</body>
+</html>

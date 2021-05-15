@@ -1,0 +1,57 @@
+﻿<html>     
+<head>       
+<meta charset="UTF-8">     
+<style type="text/css"> 
+    span{
+        font-size: 12px;
+        text-align:center;
+    }
+    .divView {
+        margin-left:10px; 
+        float: left; 
+        width: 60px; 
+        height:100%;
+    }
+    .imgView {
+        width: 60px;
+        height:60px
+    }
+    .imgView:hover {
+        border:1px solid blue;
+    }
+</style>     
+</head>     
+<body style="overflow-y:hidden;"> 
+<div style="height: 90px; width:100%;"> 
+    <div class="divView">
+        <img src="spring3.jpg" class="imgView" onclick="handleShareClick()"></img>
+        <span>分享链接</span>
+    </div>
+    
+    <div class="divView">
+        <img src="spring3.jpg" class="imgView" onclick="handlePDFClick()"></img>
+        <span>导出为PDF</span>
+    </div>
+    
+    <div class="divView">
+        <img src="spring3.jpg" class="imgView" onclick="handleWordClick()"></img>
+        <span>导出为word</span>
+    </div>
+</div>
+<script type="text/javascript" src="../template_for_communication_with_ynote/js/YNoteCommunicationInterface.js"></script>
+<script type="text/javascript" src="../template_for_communication_with_ynote/js/CefSupportScript.js"></script>
+<script type="text/javascript">
+function handleShareClick() {
+    window.YNote.shareEntry();
+}
+
+function handlePDFClick() {
+    window.YNote.exportPDF();
+}
+
+function handleWordClick() {
+    window.YNote.exportWord();
+}
+</script>
+</body>     
+</html>    

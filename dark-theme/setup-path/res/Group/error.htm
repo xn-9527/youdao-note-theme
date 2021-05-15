@@ -1,0 +1,61 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>错误页面</title>
+<style>
+* {
+    padding: 0;
+    margin: 0;
+}
+body{
+    -webkit-user-select: none;
+}
+
+div {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#hint_container {
+    text-align: center;
+    height: 36px;
+    border-bottom: 1px solid RGB(236, 233, 178);
+    background-color: RGB(254, 251, 198);
+    font-size: 12px;
+    font-family: 'Microsoft YaHei', '微软雅黑';
+    line-height: 36px;
+    color: RGB(242, 108, 108);
+    cursor: default;
+
+}
+
+#reconnect {
+    margin-left: 10px;
+    color: RGB(120, 162, 222);
+    cursor: pointer;
+}
+
+#content {
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:auto;
+	height:240px;
+	width:70%;
+    font:12px/1.6 "微软雅黑", "黑体", Arial, sans-serif;
+}
+
+</style>
+</head>
+
+<body>
+  <div id="hint_container"><span>协作网络当前网络链接出现了些问题</span><span id="reconnect" onclick="window.YGroup.retryToLoad();">重新链接</span></div>
+  <div id="content" align="center">
+    <p><img src="./error.png" /></>
+    <p>加载错误，请检查网络链接</p>
+  </div>
+</body>
+</html>

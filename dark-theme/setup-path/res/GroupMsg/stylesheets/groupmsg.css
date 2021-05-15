@@ -1,0 +1,64 @@
+body {
+    margin          : 0px;
+    margin-top      : 5px;
+    margin-bottom   : 5px;
+    border      : 0;
+    font-family : Arial, 微软雅黑, 宋体;
+    font-size   : 12px;
+    -webkit-user-select : none;
+    background-color : white;
+    color : black;
+    cursor : default;
+}
+
+.group-item, .notify-item{
+    height : 30px;
+    line-height : 30px;
+    padding-left : 10px;
+    border : 0;
+    border-top : 0px;
+}
+
+.item-text {
+    overflow      : hidden;
+    white-space   : nowrap;
+    text-overflow : ellipsis;
+}
+
+.wrapper {
+	display : table;
+	float : right;
+	height : 100%;
+    margin-right : 6px;
+}
+
+.notify-item .wrapper {
+    margin-right : 14px;
+}
+
+.cell {
+	display : table-cell;
+	vertical-align : middle;
+}
+
+.group-item:hover, .notify-item:hover {
+    background-color : rgb(218,231,242);
+}
+
+.msg-number{
+    font-size : 11px;
+    height : 17px;
+    line-height : 17px;
+    text-align : center;
+    border-radius : 5px;
+    background-color: rgb(255,122,122);
+    color : white;
+    min-width : 22px;
+}
+
+.has-msg-tip {
+    height : 6px;
+    width  : 6px;
+    border-radius : 3px;
+    background-color : rgb(255,122,122);
+}

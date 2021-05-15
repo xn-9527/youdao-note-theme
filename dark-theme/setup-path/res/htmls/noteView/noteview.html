@@ -1,0 +1,282 @@
+﻿<html>     
+<head>     
+  <title>标题</title>     
+  <meta charset="UTF-8">     
+<style type="text/css"> 
+    
+     body{
+     border-style: solid;
+     border-width: 1px;
+     border-color: #EBEBEB;
+     margin:0px;
+     overflow:hidden;
+    }
+    
+     /* 设置滚动条的样式 */
+        ::-webkit-scrollbar {
+             width:9px;
+             background:transparent;
+        }
+        /* 滚动槽 */
+        ::-webkit-scrollbar-track {
+            /*border-radius:4px;*/
+            background-color: transparent;
+        }
+        /* 滚动条滑块 */
+        ::-webkit-scrollbar-thumb {
+            /*border-radius:4px;*/
+            width: 9px;
+            background:rgba(232,234,244,1.0);
+        }
+        ::-webkit-scrollbar-thumb:window-inactive {
+            background:rgba(232,234,244,1.0);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover{
+            background:rgba(227,230,242,1.0);
+        }
+    
+    #divViewMode{
+      background-color: #F9F9F9;
+      height: 55px; 
+      padding-top: 32px;
+      padding-bottom: 16px;
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-bottom-color: #EEEEEE;
+      overflow:hidden;
+    }
+    
+    
+    .divView {
+        margin-left:24px; 
+        float: left; 
+        width: 48px; 
+    }
+    
+    .divView .imgView {
+        background-position:0px 0px;
+        background-size:32px 96px;
+        width: 32px;
+        height:32px;
+        margin-right:8px; 
+        margin-left:8px;
+        margin-bottom:8px;
+    }
+    
+    .divView:hover .imgView {
+        background-position: 0px -32px;
+    }
+    
+    .divViewSelect .imgView{
+        background-position: 0px -64px;
+    }
+	
+	.divViewSelect:hover .imgView{
+        background-position: 0px -64px;
+    }
+    
+    .divView span{
+        font-family: 微软雅黑;
+        color: #979da9;
+        font-size: 12px;
+        text-align:center;
+
+    }
+    
+    .divView:hover span{
+        color: #525c6f;
+    }
+    
+    .divViewSelect span{
+        color: #525c6f;
+    }
+    
+    
+    .divZoom{
+      background-color: #F9F9F9;
+      height: 31px; 
+      padding-top: 8px;
+      padding-bottom: 8px;
+      padding-left: 56px;
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-bottom-color: #EBEBEB;
+    }
+    
+    .btnZoom{
+        background-size:32px 128px;
+        background-clip: padding-box;
+        color: white;
+        width: 32px;
+        height: 32px;
+        margin:0px;
+        float: left; 
+    }
+	
+	.btnZoomEnable{
+	}
+    
+    .btnZoomEnable:hover{
+        background-position: 0px -32px;
+    }
+	
+	.btnZoomDisable{
+	     background-position: 0px -96px;
+	}
+    
+    .ZoomText{
+     float: left; 
+     width: 64px;
+     height: 32px;
+     line-height:32px;
+     color:#979da9;
+     font-size:12px;
+     font-family:微软雅黑;
+     text-align:center;
+    }
+    
+    .divNoteBack{
+        background-color: #FAFAFA;
+        width: 100%;
+        height: 304px;
+        overflow-y:auto;
+    }
+    
+    .shadow{
+        width: 100%;
+        height: 32px;
+        background-image: url(shadow.png);
+        background-size:208px 18px;
+        background-repeat: repeat-x;
+    }
+    
+    .divNoteBackInner{
+       height: 100px;
+       padding-left:8px
+    }
+    
+    .notebgTitle{
+        height: 20px;
+        line-height:20px;
+        color:#979da9;
+        font-size:12px;
+        font-family:微软雅黑;
+        text-align:center;
+    }
+    
+    .bgButton{
+       float:left;
+       background-image: url(blank.jpg);
+       height:64px;
+       width:64px;
+       margin-left:8px;
+       margin-bottom:8px;
+    }
+    
+    .bgImageMask{
+	    background-image: url(bgMask.png);
+		background-size: 64px  192px;
+        width: 64px;
+        height: 64px;
+        margin:0px;
+    }
+    
+    .bgButton:hover .bgImageMask{
+		background-position: 0px -64px;
+    }
+    
+    .bgButtonSelect .bgImageMask{
+        background-position: 0px -128px;
+    }
+	
+	.bgButtonSelect:hover .bgImageMask{
+        background-position: 0px -128px;
+    }
+    
+</style>     
+</head>     
+<body style="height:456px; width:240px;" style="overflow-y:hidden;"> 
+<div id="divOut">
+<div>
+    <div id="divViewMode" style=""> 
+        <div id="viewModeNormal" class="divView" onclick="handleNormalViewClick()">
+            <div class="imgView" style="background-image: url(viewNormal.svg);"></div>
+            <span>普通视图</span>
+        </div>
+        
+        <div id="viewModeReading" class="divView" onclick="handleReadViewClick()">
+             <div class="imgView" style="background-image: url(viewReading.svg);"></div>
+            <span>阅读视图</span>
+        </div>
+        
+        <div id="viewModePage" class="divView" onclick="handlePageViewClick()">
+             <div class="imgView" style="background-image: url(viewPage.svg);"></div>
+            <span>分页视图</span>
+        </div>
+    </div>
+    <div class="divZoom">
+        <div id="btnZoomout" class="btnZoom btnZoomEnable" style="background-image: url(zoomout.png);" onclick="handleZoomDec()"></div>
+        <div class="ZoomText" id="zoomValue">100%</div>
+        <div id="btnZoomin" class="btnZoom btnZoomEnable" style="background-image: url(zoomin.png);" onclick="handleZoomInc()"></div>
+    </div>
+</div>
+
+<div id="noteBgDiv" class="divNoteBack">
+    <div class="shadow"></div>
+    <div id="freeBgInner" class="divNoteBackInner">
+        <div class="notebgTitle">
+            纸张背景
+        </div>
+        <div id="freeBg">
+            <div class="bgButton">
+                <div class="bgImageMask"></div>
+            </div>
+            <div class="bgButton">
+                <div class="bgImageMask"></div>
+            </div>
+            <div class="bgButton">
+                <div class="bgImageMask"></div>
+            </div>
+        </div>
+    </div>
+    <div class="divNoteBackInner">
+        <div class="notebgTitle">
+            会员纸张
+        </div>
+        <div id="VipBg">
+            <div class="bgButton" onclick="handleBgClick()">
+                <div class="bgImageMask"></div>
+            </div>
+            <div class="bgButton" onclick="handleBgClick()">
+                <div class="bgImageMask"></div>
+            </div>
+            <div class="bgButton" onclick="handleBgClick()">
+                <div class="bgImageMask"></div>
+            </div>
+            <div class="bgButton" onclick="handleBgClick()">
+                <div class="bgImageMask"></div>
+            </div>
+            <div class="bgButton" onclick="handleBgClick()">
+                <div class="bgImageMask"></div>
+            </div>
+            <div class="bgButton" onclick="handleBgClick()">
+                <div class="bgImageMask"></div>
+            </div>
+            <div class="bgButton" onclick="handleBgClick()">
+                <div class="bgImageMask"></div>
+            </div>
+            <div class="bgButton" onclick="handleBgClick()">
+                <div class="bgImageMask"></div>
+            </div>
+        </div>
+    </div>  
+</div>
+</div>
+
+ 
+<script type="text/javascript" src="../template_for_communication_with_ynote/js/YNoteCommunicationInterface.js"></script>
+<script type="text/javascript" src="../template_for_communication_with_ynote/js/CefSupportScript.js"></script>
+<script type="text/javascript" src="noteViewInfo.js"></script> 
+</body>     
+</html>    

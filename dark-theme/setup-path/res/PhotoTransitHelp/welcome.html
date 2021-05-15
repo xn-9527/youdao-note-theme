@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>照片中转站</title>
+<style>
+body{background:#fafafa;color:#2a2a2a;font:12px/1.6 "微软雅黑","华文细黑","黑体",arial,sans-serif;margin:0;padding:0;}
+#doc{position:absolute;left:0;top:50%;width:100%;min-width:500px;height:530px;margin-top:-265px;text-shadow:0 1px 0 #fff}
+#hd{height:120px;padding-top:245px;margin:0 auto;text-align:center;border-bottom:1px solid #ccc;background:url(images/illustration.jpg) no-repeat center top;box-shadow:0 1px 0 #fff}
+#hd h1{margin:0;font-size:36px}
+#hd h2{margin:0;font-size:20px;font-weight:normal}
+#bd{margin:70px 30px 0;text-align:center}
+#description{color:#666}
+#go{margin-top:12px;}
+.btn{display:inline-block;width:122px;height:0;padding-top:42px;margin:0 20px;overflow:hidden;background:url(images/btns.png) no-repeat}
+.btn-go{width:162px}
+.btn-go:hover{background-position:left -42px}
+.btn-go:active{background-position:left -84px}
+.btn-iphone{background-position:-162px top}
+.btn-iphone:hover{background-position:-162px -42px}
+.btn-iphone:active{background-position:-162px -84px}
+.btn-ipad{background-position:-284px top}
+.btn-ipad:hover{background-position:-284px -42px}
+.btn-ipad:active{background-position:-284px -84px}
+.btn-android{background-position:-406px top}
+.btn-android:hover{background-position:-406px -42px}
+.btn-android:active{background-position:-406px -84px}
+</style>
+
+</head>
+<body>
+<div id="doc">
+	<div id="hd">
+		<h1>感受畅快的无线体验</h1>
+		<h2>手机拍照后即可在电脑观看</h2>
+		<p id="go"><a href="" class="btn btn-go">开始体验</a></p>
+	</div>
+	<div id="bd">
+		<p id="description">1.此功能需要手机客户端支持；2.照片云端存储时间长达一个月；</p>
+		<p id="download">
+			<a href="http://note.youdao.com/download.html?auto=1#gtiPhone" class="btn btn-iphone">iPhone版</a>
+			<a href="http://note.youdao.com/download.html?auto=1#gtAndroid" class="btn btn-android">android版</a>
+		</p>
+	</div>
+</div>
+<script type="text/javascript">
+    (function () {
+        window.onresize = function () {
+            var cHeight = document.documentElement.clientHeight;
+            var doc = document.getElementById('doc');
+            if (cHeight <= 530) {
+                doc.style.marginTop = "0px";
+                doc.style.top = "20px";
+            } else {
+                doc.style.marginTop = "-265px";
+                doc.style.top = "50%";
+            }
+        }
+        
+		var strPart1 = '1.此功能需要手机客户端支持；2.照片云端存储时间长达';
+        var description = document.getElementById('description');
+        var strPart2 = (window.external.GetIsVip && window.external.GetIsVip()) ? '六个月；' : '一个月；';
+        description.innerHTML = strPart1 + strPart2;
+
+     })();
+
+</script>
+</body>
+</html>

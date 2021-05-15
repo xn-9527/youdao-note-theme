@@ -1,0 +1,56 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>标题</title>
+    <link type="text/css" rel="stylesheet" href="css/htmldialogbase.css"/>
+    <style>
+        body{
+            font-size: 16px;
+            color: rgb(97,97,97);
+        }
+        #openwx{
+            /*margin: auto;*/
+            /*width: 300px;*/
+            text-align: center;
+            margin: 25px 0px 0px 0px;
+        }
+         #afterOpen{
+            text-align: center;
+            margin: 2px 0px 25px 0px;
+         }
+        #qrcodeTable{
+            width: 256px;
+            height: 256px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+ <div id="openwx">打开微信“扫一扫”</div>
+ <div id="afterOpen">打开网页后点击右上角分享按钮</div>
+ <div id="qrcodeTable"></div>
+<script type="text/javascript" src="MultiSelect/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="utility/jquery.qrcode.js"></script>
+<script type="text/javascript" src="utility/qrcode.js"></script>
+<script type="text/javascript" src="utility/TimeUtility.js"></script>
+<script type="text/javascript">
+    function CreateQrcode( varText )
+    {
+        jQuery('#qrcodeTable').qrcode({
+		render	: "canvas",
+		text	: varText
+	    });	
+    }
+    
+    function handleMessageFromClient(msgType, param1, param2, param3) {
+        console.log(msgType, param1, param2);
+        if (msgType == "CreateQrcode") {
+            CreateQrcode(param1);
+        }
+    }
+</script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/YNoteCommunicationInterface.js"></script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/CefSupportScript.js"></script>
+</body>
+</html>

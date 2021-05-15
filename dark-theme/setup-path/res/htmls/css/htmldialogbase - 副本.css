@@ -1,0 +1,174 @@
+body{
+    position: absolute;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    -webkit-user-select: none;
+    font-family: 微软雅黑;
+    font-size: 12px;
+}
+button{
+    font-family: 微软雅黑;
+    font-size:12px;
+}
+.content {
+    position: absolute;
+    left: 32px;
+    top: 8px;
+    bottom: 32px;
+    right: 32px;
+}
+
+.content2 {
+    position: absolute;
+    left: 32px;
+    top:8px;
+    bottom: 32px;
+    right: 32px;
+}
+
+.userAction {
+    height: 24px;
+    width: 100%;
+    bottom: 0px;
+    position: absolute;
+}
+
+.actionButton {
+    float: right;
+    font-family: 微软雅黑;
+}
+
+div.desc .line {
+    margin: 4px 0px 4px 0px;
+}
+
+.interval1{
+    height: 12px;
+}
+/* 6.0UI新UI的蓝白两种按钮；如果是圆角按钮则在定义button时根据按钮大小设置border-radius即可*/
+
+.bluebutton
+{   
+    background-color: #5576bd; 
+    border: 1px solid transparent;
+    border-color:#445E97;
+    color:#FFFFFF;
+}
+.bluebutton:hover
+{
+    background-color: #4E6CAE; 
+    border: 1px solid transparent;
+    border-color:#3E568B;
+}
+
+.bluebutton:active
+{
+    background-color: #4E6CAE; 
+    border: 1px solid transparent;
+    border-color:#3E568B;
+}
+
+.bluebutton:disabled
+{
+    background: rgba(0,0,0,0.07);
+    border: 1px solid rgba(0,0,0,0.05);
+    color:#a7a7a7;
+}
+
+.bluebutton:focus
+{
+	outline:none;
+}
+
+.whitebutton
+{
+    border: 1px solid transparent;
+	border-color:#ccd5eb;
+    background: #ffffff;
+	font-size:12px;
+	color:#5576BD;
+}
+.whitebutton:hover
+{
+  border: 1px solid transparent;
+  border-color:#5576BD;
+  background: #ffffff;
+}
+.whitebutton:active
+{
+  border: 1px solid transparent;
+  border-color:#5576BD;
+  background: #ffffff;
+}
+.whitebutton:focus
+{
+	outline:none;
+}
+.whitebutton:disabled
+{
+    background: rgba(0,0,0,0.07);
+    border: 1px solid rgba(0,0,0,0.05);
+	color:#a7a7a7;
+}
+
+.greybutton
+{
+    border: 1px solid transparent;
+	border-color:ccd5eb;
+    background: #fafafa;
+	font-size:12px;
+	color:#5576BD;
+}
+.greybutton:hover
+{
+  border: 1px solid transparent;
+  border-color:#5576BD;
+  background: #fafafa;
+}
+.greybutton:active
+{
+  border: 1px solid transparent;
+  border-color:#5576BD;
+  background: #fafafa;
+}
+.greybutton:focus
+{
+	outline:none;
+}
+.greybutton:disabled
+{
+    background: rgba(0,0,0,0.07);
+    border: 1px solid rgba(0,0,0,0.05);
+	color:#a7a7a7;
+}
+
+button {
+    min-width: 48px;
+    height: 32px;
+    background-color:#FFFFFF;
+    background-clip:border-box;
+    border: 1px solid transparent;
+    border-color:#CCD5EB;
+    padding-left:16px;
+    padding-right:16px;
+    border-radius:16px;
+}
+
+button:focus{
+   outline:0;
+}
+
+button:hover{
+    border-color:#5576BD;  
+}
+
+button:active
+{
+    border-color:#5576BD;    
+}
+
+button:disabled
+{
+    border-image:url(../res/btn_disable.png) 4 32 4 32 stretch;
+}

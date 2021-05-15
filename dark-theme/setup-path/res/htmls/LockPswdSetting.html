@@ -1,0 +1,104 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>标题</title>
+    <link type="text/css" rel="stylesheet" href="css/htmldialogbase.css"/>
+    <style>
+		.boxsize{
+			width:176px;
+			height:32px;
+		}
+		
+		.pswdinput{
+			width:272px;
+			height:32px;
+		}
+		
+        .line {
+			font-family:'Microsoft Yahei';
+            font-size: 12px;
+            color: #666666;
+            letter-spacing: 0;
+            line-height: 12px;
+        }
+		
+		.btnSize{
+			height:32px;
+			width:72px;
+			border-radius:32px;
+		}
+		
+    </style>
+</head>
+
+<body>
+
+<div style="overflow-x:hidden;overflow-y:hidden;margin-left:32px">
+    <div style="margin-top:18px"><span class="line">输入密码</span><input class="pswdinput" onclick="click1()" onselect="click1()" style="margin-left:44px"type="password" id="pswd1" value="123412341234"></input></div>
+    <div style="margin-top:24px"><span class="line">确认密码</span><input class="pswdinput" onclick="click2()" onselect="click2()" style="margin-left:44px"type="password" id="pswd2" value="123412341234"></input></div>
+    <div style="color:#ff9494; display:none;margin-top:4px" id="tip"></div>
+	<button class="bluebutton btnSize" style="position:absolute;top:130;left:240px" onclick="save()">保存</button>
+    <button class="whitebutton btnSize"style="position:absolute;top:130;left:336px" onclick="cancel()">取消</button>
+</div>
+
+<script type="text/javascript" src="cropPortrait/js/jquery.min.js"></script>
+<script type="text/javascript">	
+ 
+ var bFirst1 = true;
+ var bFirst2 = true;
+ function click1()
+ {
+    if(bFirst1 == true)
+    {   
+        document.getElementById("pswd1").value = "";
+        bFirst1 = false;
+    }
+ }
+
+ function click2()
+ {
+    if(bFirst2 == true)
+    {   
+        document.getElementById("pswd2").value = "";
+        bFirst2 = false;
+    }
+ }
+ 
+function handleMessageFromClient(msgType, param1, param2, param3) {
+    document.getElementById("pswd1").value = "";
+    document.getElementById("pswd2").value = "";
+}
+ 
+function save() {
+    if(bFirst1 == true && bFirst2 == true)
+    {
+        SendMessageToClient("quitOK");
+    }
+
+    var pswd1 = document.getElementById("pswd1");
+    var pswd2 = document.getElementById("pswd2");
+    var tip = document.getElementById("tip");
+	var value1 = pswd1.value;
+	var value2 = pswd2.value;
+	var errorTip;
+    
+    if(value1 != value2)
+    {
+        tip.innerHTML = '两次输入的密码不一致，请重新输入';
+        tip.style.display = "block";
+    }
+    else
+    {
+        SendMessageToClient("LockPswd",value1);
+    }
+}
+
+function cancel(){
+    SendMessageToClient("quitOK");
+}
+	
+</script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/YNoteCommunicationInterface.js"></script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/CefSupportScript.js"></script>
+</body>
+</html>

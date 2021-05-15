@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="stylesheets/syncinfo.css"></link>
+        <script type="text/javascript" src="vendor/underscore-min.js"></script>
+    </head>
+    <body>
+        <script type='text/html' id='note-item-template'>
+            <section data-id="<%= DataId %>" class="note-item">
+                <div class="<%= SyncState %>"></div>
+                <h1 class="title"><%= NoteTitle %></h1>
+                <h2 class="sync-info-text"><%= SyncInfo %></h2>
+                <div class="sync-progress">
+                    <div class="<%= SyncState %>"></div>
+                </div>
+            </section>
+        </script>
+        
+        <div class="item-container">
+            <div class="summary">
+                <div class="summary-text">共需要同步<span class="total-num">0</span>篇笔记</div>
+            </div>
+        </div>
+
+        <div class="start-sync-state">
+            <div class="note-desc-text">正在准备数据...</div>
+            <div class="sync-desc-text start-sync-desc-text">
+                正在同步
+            </div>
+        </div>
+        
+        <div class="blank-state">
+            <div class="note-desc-text">暂无同步笔记</div>
+            <div class="sync-desc-text">
+                <div class="all-finish-icon"></div>全部笔记同步完成！
+            </div>
+        </div>
+        
+        <script type="text/javascript" src="scripts/syncinfo.js"></script>
+        <script type="text/javascript">
+            window.addEventListener("load", function(){
+                YNote.Ready(window.SyncInfo.dispatch.bind(window.SyncInfo), document);
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>标题</title>
+    <link type="text/css" rel="stylesheet" href="css/htmldialogbase.css"/>
+    <style>
+    </style>
+</head>
+
+<body>
+<div class="content">
+    <div class="desc">
+        <p class="line">文件保存成功。</p>
+        <div class="interval1"></div>
+        <!--<p class="line">line three</p>-->
+    </div>
+    <div class="userAction">
+        <button class="actionButton" style="margin-left: 20px" onclick="clickCancel()">打开文件</button>
+        <button class="actionButton bluebutton midBtn" onclick="clickOk()" id="openBtn">打开文件夹</button>
+    </div>
+</div>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/CefSupportScript.js"></script>
+<script type="text/javascript"  src="template_for_communication_with_ynote/js/YNoteCommunicationInterface.js"></script>
+<script type="text/javascript">
+    function clickOk(){
+        SendMessageToClient("setValue", "opnedir", "true");
+        SendMessageToClient("quitOK");
+    }
+    function clickCancel(){
+        SendMessageToClient("setValue", "opnefile", "true");
+        SendMessageToClient("quitCancel");
+    }
+
+</script>
+</body>
+</html>

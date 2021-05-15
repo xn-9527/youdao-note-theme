@@ -1,0 +1,114 @@
+﻿<html>
+<head>
+<meta charset="utf-8">
+<style>
+
+body{
+   background-color: #FAFAFA;
+   border-style:solid;
+   border-width:1px;
+   margin:0px;
+   border-color: #EBEBEB;
+}
+
+.tableConainer{
+    height:64px:
+    width:128px;
+    margin:8px;
+    
+    background-color: #FAFA00;
+}
+
+table{
+   border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-spacing: 0px;
+}
+
+table td{ 
+   background-color: #FFFFFF;
+   border:solid 1px #F0F0F0;
+   width: 16px;
+   height: 16px; 
+   margin:0px;
+}
+
+.tipContainer{
+   height:24px:
+   width:100%;
+}
+
+.tipContainer{
+    font-family: 微软雅黑;
+    color: #525C6F;
+    font-size: 12px;
+    text-align:center;
+}
+
+</style>
+</head>
+<body style="height:104px; width:144px;" style="overflow-y:hidden;" onload="load()">
+ <div class='tableConainer'>
+    <table frame="void" border="1" cellspacing="2" id="tb"></table>
+ </div>
+<div id="title" class="tipContainer">
+    插入表格
+</div>
+
+</table>
+
+<script type="text/javascript" src="template_for_communication_with_ynote/js/YNoteCommunicationInterface.js"></script>
+<script type="text/javascript" src="template_for_communication_with_ynote/js/CefSupportScript.js"></script>
+<script type="text/javascript">
+function load(){
+    var table=document.getElementById("tb");
+    for(var i=0; i<4; ++i){
+        var tr=document.createElement("tr");
+        for(var j=0; j<8; ++j){
+            var td=document.createElement("td");
+            td.setAttribute('onmouseover', 'handleMouseOver()');
+            td.setAttribute('row', i);
+            td.setAttribute('col', j);
+            td.setAttribute('onclick', 'handleClick()');
+            tr.appendChild(td);
+        }
+        table.appendChild(tr); 
+    }
+}
+
+function handleMouseOver(){
+    var table=document.getElementById("tb");
+    var oEvent = window.event;
+    var row = oEvent.target.getAttribute('row');
+    var col = oEvent.target.getAttribute('col');
+    for(var i=0; i<4; ++i){
+        var cols = table.rows[i].cells;
+        for(var j=0; j<8; ++j){ 
+            if((i<=row) && (j<=col)){
+                cols[j].style.background="#D2E2FF";
+            }
+            else{
+                cols[j].style.background="#FFFFFF";
+            }
+        }
+    }
+    var title=document.getElementById("title");
+    var row1 = parseInt(row)+1;
+    var col1 = parseInt(col)+1;
+    title.innerText= row1+" x "+col1;
+}
+
+function handleClick(){
+    var oEvent = window.event;
+    var row = oEvent.target.getAttribute('row');
+    var col = oEvent.target.getAttribute('col'); 
+    var row1 = parseInt(row)+1;
+    var col1 = parseInt(col)+1;
+    window.YNote.InsertTable(row1, col1);
+}
+
+</script>
+</body>
+</html>

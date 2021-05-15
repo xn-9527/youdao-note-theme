@@ -1,0 +1,22 @@
+html{color:#000;background:#ffffff;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+ol,ul{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+q:before,q:after{content:'';}
+abbr,acronym{border:0;font-variant:normal;}
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+input,textarea,select{*font-size:100%;}
+legend{color:#000000;}
+.tl-container{font-size:12px;font-family:'微软雅黑','Microsoft Yahei','宋体','Simsun';line-height:16px;margin:5px 0 0 5px;overflow:hidden;-webkit-user-select:none;}
+.tl-container li{margin-bottom:5px;}
+.tl-item{display:inline-block;position:relative;height:16px;border:1px solid #cee2f2;-webkit-border-radius:18px;padding:0 13px;overflow:hidden;vertical-align:top;text-align:center;}
+.tl-item:hover{border-color:#bad4e9;background:#dee9f2;border:1px solid #cee2f2;}
+.tl-item span{cursor:default;vertical-align:top;display:inline-block;height:16px;overflow:hidden;text-overflow:ellipsis;}
+.tl-item a{display:inline-block;visibility:hidden;text-decoration:none;width:100%;height:16px;background:url(./img/tag_del_hover.png) no-repeat center center;background-color:rgba(232, 240, 255, 0.7);-webkit-border-radius:18px;position:absolute;left:0px;top:0px;}
+.tl-item:hover a{visibility:visible;}

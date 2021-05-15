@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Popo>
+
+	<Skin Name="default" Text="默认皮肤" Dir="default" Photo="defaultskin.png" ChangeSkinColor="t" />
+
+	<Skin Name="qingya" Text="清雅" Dir="qingya" Photo="Preview.png" ChangeSkinColor="t"/>
+    
+    <css>
+        <MainForm>
+            <!-- 列表视图控件 -->
+            <AbstractListView ScrollSize="15" BkColor="255,255,255,255" SelColor="255,200,224,255">
+                <Header>
+                    <Font TextColor="255,0,0,0" FontFace="SimSun" FontSize="12" FontBold="f" />
+                    <Left Normal="public\slvhi_normal_l.png" Focus="public\slvhi_hover_l.png" Press="public\slvhi_press_l.png" />
+                    <Middle Normal="public\slvhi_normal_m.png" Focus="public\slvhi_hover_m.png" Press="public\slvhi_press_m.png" />
+                    <Right Normal="public\slvhi_normal_r.png" Focus="public\slvhi_hover_r.png" Press="public\slvhi_press_r.png" />
+                    <AscArrow File="\public\slvh_asc.png" />
+                    <DescArrow File="\public\slvh_desc.png" />
+                </Header>
+                <Items>
+                    <Font TextColor="255,0,0,0" FontFace="SimSun" FontSize="12" FontBold="f" />
+                </Items>
+                <VScrollBar ThumbMinSize="6">
+                    <PrevButton Normal="\public\VScrollbar_01.png" Focus="\public\VScrollbar_02.png" Press="\public\VScrollbar_03.png" Disable="Public\VScrollbar_04.png" />
+                    <NextButton Normal="\public\VScrollbar_09.png" Focus="\public\VScrollbar_10.png" Press="\public\VScrollbar_11.png" Disable="Public\VScrollbar_12.png" />
+                    <ThumbNormal File01="\public\VScrollbar_05_01.png" File04="\public\VScrollbar_05_02.png" File07="\public\VScrollbar_05_03.png" />
+                    <ThumbFocus File01="\public\VScrollbar_06_01.png" File04="\public\VScrollbar_06_02.png" File07="\public\VScrollbar_06_03.png" />
+                    <ThumbPressed File01="\public\VScrollbar_07_01.png" File04="\public\VScrollbar_07_02.png" File07="\public\VScrollbar_07_03.png" />
+                    <ThumbDisabled File01="\public\VScrollbar_08_01.png" File04="\public\VScrollbar_08_02.png" File07="\public\VScrollbar_08_03.png" />
+                    <ThumbDrag File="\public\VScrollbar_15.png" />
+                    <Track File="\public\VScrollbar_13.png" />
+                </VScrollBar>
+                <HScrollBar ThumbMinSize="6">
+                    <PrevButton Normal="\public\HScrollbar_01.png" Focus="\public\HScrollbar_02.png" Press="\public\HScrollbar_03.png" Disable="Public\HScrollbar_04.png" />
+                    <NextButton Normal="\public\HScrollbar_09.png" Focus="\public\HScrollbar_10.png" Press="\public\HScrollbar_11.png" Disable="Public\HScrollbar_12.png" />
+                    <ThumbNormal File01="\public\HScrollbar_05_01.png" File02="\public\HScrollbar_05_02.png" File03="\public\HScrollbar_05_03.png" />
+                    <ThumbFocus File01="\public\HScrollbar_06_01.png" File02="\public\HScrollbar_06_02.png" File03="\public\HScrollbar_06_03.png" />
+                    <ThumbPressed File01="\public\HScrollbar_07_01.png" File02="\public\HScrollbar_07_02.png" File03="\public\HScrollbar_07_03.png" />
+                    <ThumbDisabled File01="\public\HScrollbar_08_01.png" File02="\public\HScrollbar_08_02.png" File03="\public\HScrollbar_08_03.png" />
+                    <ThumbDrag File="\public\HScrollbar_15.png" />
+                    <Track File="\public\HScrollbar_Span.bmp" />
+                </HScrollBar>
+            </AbstractListView>
+        </MainForm>
+    </css>
+
+</Popo>
+
+<SkinConf>
+
+	<default>
+
+		<Ulist>
+
+			<Item GroupColor="56,91,143" SignColor="129,129,129" SplitColor="0,0,0" SelfColor="255,0,0" NotFoundColor="255,0,0" UListGreenColor="0,172,45"UListGrayColor="129,129,129" UListDefaultColor="0,0,0" />
+
+		</Ulist>
+
+		<SessionText>
+
+			<Item PromptColor="128,128,128" StatusColor="128,128,128" LabelColor="56,91,143" />
+
+		</SessionText>
+
+	</default>
+
+	<qingya>
+
+		<Ulist>
+
+			<Item GroupColor="56,91,143" SignColor="129,129,129" SplitColor="0,0,0" SelfColor="255,0,0" NotFoundColor="255,0,0" UListGreenColor="0,172,45"UListGrayColor="129,129,129" UListDefaultColor="0,0,0" />
+
+		</Ulist>
+
+		<SessionText>
+
+			<Item PromptColor="128,128,128" StatusColor="128,128,128" LabelColor="56,91,143" />
+
+		</SessionText>
+
+	</qingya>
+
+</SkinConf>
+

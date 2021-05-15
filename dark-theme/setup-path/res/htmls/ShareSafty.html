@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sharesafty</title>
+    <link type="text/css" rel="stylesheet" href="css\htmldialogbase.css"/>
+    <link href="./css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="template_for_communication_with_ynote/js/CefSupportScript_without_ready.js"></script>
+    <script type="text/javascript" src="./jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="./js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>  
+    <style>
+	    body {
+	    	position:fixed;
+		    font-family: "微软雅黑";
+		    font-size: 12px;
+		    -webkit-user-select: none;
+		    cursor:default;
+		}
+		input[type="checkbox"]{
+			margin-top: -2px;
+	        margin-bottom: 1px;
+	        vertical-align: middle;
+		}
+		input[type="radio"]{
+			margin-top: -2px;
+	        margin-bottom: 1px;
+	        vertical-align: middle;
+
+		}
+		.select-all input{
+		    display: inline-block;
+		    vertical-align: middle;
+		    margin-bottom: 2px;
+		}
+		::-webkit-scrollbar{
+			display:none;
+			}
+		#lblpassword{
+			margin-left:40px;
+		}
+		.hoverHand:hover {
+	    cursor: pointer;
+		}
+
+		.hoverDefault:hover {
+		    cursor: default;
+		}
+
+		.disable1 {
+		    color: rgb(162, 162, 162);
+		}
+
+		.tip {
+		    color: #5576BD;
+		}
+	</style>
+	<script type="text/javascript">
+		var DeadlineDate = "";
+		var Selected = "Deadline2";
+		function clickOk(){
+			var Passwordchecked = document.getElementById("sharePasswordCheckbox").checked;
+			if (Passwordchecked) {Passwordchecked = "true"; } 
+			var Deadlinechecked = document.getElementById("deadlineCheckbox").checked;
+			
+			if (Deadlinechecked) {
+				if (document.getElementById("Deadline1").checked) {
+					DeadlineDate = "1";
+				} else if (document.getElementById("Deadline2").checked) {
+					DeadlineDate = "7";
+				} else if (document.getElementById("Deadline3").checked) {
+					DeadlineDate = "30";
+				} else if (document.getElementById("Deadline4").checked) {
+					var DateTime =$('.form_datetime').data("datetimepicker").getDate();
+                    DeadlineDate = Date.parse(DateTime).toString();
+					if (isNaN(DeadlineDate)) {
+						DeadlineDate = "";
+					}
+					console.log(DeadlineDate);
+				}
+			}
+			else {
+				DeadlineDate = "";
+			}
+
+			SendMessageToClient("clickOk", Passwordchecked, DeadlineDate);
+		}
+
+		function clickCancel(){
+			SendMessageToClient("clickCancel");
+		}
+
+		function EnableRadio(enable){
+			document.getElementById("Deadline1").disabled = !enable;
+			document.getElementById("Deadline2").disabled = !enable;
+			document.getElementById("Deadline3").disabled = !enable;
+			document.getElementById("Deadline4").disabled = !enable;
+			if (Selected == "Deadline4" && enable) {
+				document.getElementById("Deadline5").style.visibility = "visible";
+			}
+			else {
+				document.getElementById("Deadline5").style.visibility = "hidden";
+			}
+			document.getElementById(Selected).checked = enable;
+
+			document.getElementById("deadlineInfoDetail").disabled = !enable;
+			if (enable) {
+	        	document.getElementById("authorTip").style.display = "inline";
+          		document.getElementById("authorTip").setAttribute("style", "position: relative; left:16px;");
+          		document.getElementById("deadlineInfoDetail").style.color = "rgb(0, 0, 0)";
+			}
+			else {
+				document.getElementById("deadlineInfoDetail").style.color = "rgb(162, 162, 162)";
+				document.getElementById("authorTip").style.display = "none";
+			}
+		}
+		function GetDeadline(){
+			var checked = document.getElementById("deadlineCheckbox").checked;
+			EnableRadio(checked);
+		}
+		function onResetDeadlineClick(){
+			document.getElementById("deadlineCheckbox").checked = true;
+			document.getElementById("deadlineRadioGroup").style.display = "block";
+			document.getElementById("deadlineInfo").style.display = "none";	
+			EnableRadio(true);
+			SendMessageToClient("ClickReset");
+		}
+		function handleMessageFromClient(msgType, param1, param2, param3) {
+			if (msgType == "init") {
+				// param1 密码, param2 到期时间， param3 是否为会员
+				document.getElementById("Deadline5").style.visibility = "hidden";
+				if (param1){
+					document.getElementById("sharePasswordCheckbox").checked = true;
+				}
+				if (param2){
+					document.getElementById("deadlineCheckbox").checked = true;
+					document.getElementById("deadlineRadioGroup").style.display = "none";
+					document.getElementById("deadlineInfo").style.display = "block";
+					DeadlineDate = param2;
+					var deadline = new Date( parseInt(param2));
+					var dd = deadline.getDate();
+					var mm = deadline.getMonth() + 1; //January is 0!
+					var yyyy = deadline.getFullYear();
+					if(dd < 10){
+				        dd='0'+dd
+				    } 
+				    if(mm < 10){
+				        mm='0'+mm
+				    } 
+
+					deadline = yyyy+'-'+mm+'-'+dd;
+					document.getElementById("deadlineInfoDetail").innerHTML = deadline;
+				}
+				else{
+					document.getElementById("deadlineRadioGroup").style.display = "block";
+					document.getElementById("deadlineInfo").style.display = "none";	
+				}
+				if (!param3) {
+					document.getElementById("SaveAndTip").innerHTML = "升级为会员";	
+				}
+			}
+		}
+		function OnCustomDate(obj){
+			Selected = obj.id;
+			$('.form_datetime').data("datetimepicker").setDate(today);
+			document.getElementById("Deadline5").style.visibility = "visible";	
+		}
+		function OnDisableDate(obj){
+			Selected = obj.id;
+			document.getElementById("Deadline5").style.visibility = "hidden";	
+		}
+	</script>
+</head>
+<body >
+	<div style="color:#666666;margin-left:40px;margin-right: 40px;margin-top: 5px;line-height: 250%">
+		<div style="margin-bottom: 20px;">
+			<span><b>设置密码</b></span>
+			<span class="disable1">（勾选后自动生成密码）</span>
+			<br>
+			<input id="sharePasswordCheckbox" type="checkbox" value="password" name="分享密码" /> 分享密码
+		</div>
+		<div>
+			<span><b>设置链接时效</b></span>
+			<br>
+			<input id="deadlineCheckbox" type="checkbox" name="到期日" onclick="GetDeadline()"/> 到期日 
+			<span class="disable1">（到期后分享失败）</span>
+			<div id="deadlineRadioGroup">
+				<input id="Deadline1" type="radio" name="Deadline" disabled="false" value="1天" onclick="OnDisableDate(this)" /> 1天 <br>
+				<input id="Deadline2" type="radio" name="Deadline" disabled="false" value="7天" onclick="OnDisableDate(this)" /> 7天 <br>
+				<input id="Deadline3" type="radio" name="Deadline" disabled="false" value="30天" onclick="OnDisableDate(this)" /> 30天 <br>
+				<input id="Deadline4" type="radio" name="Deadline" disabled="false" value="自定义" onclick="OnCustomDate(this)" /> 自定义 
+				<div id="Deadline5" class="input-append date form_datetime" style="display: inline;">
+					<span class="add-on"  style="background:transparent; border-style: none; margin-top: 3px;"><i class="icon-calendar"></i></span>
+					<input type="text" id="datetimepicker" readonly style="width: 100px;margin-top: 2px; 
+					cursor:default; background:transparent; border-style: none;box-shadow: none; ">
+				</div>
+			</div>
+			<div id="deadlineInfo" style="display: none;">
+				<span id="deadlineInfoDetail" style="margin-left:48px;">2019.1.31</span>
+			    <span class="hoverHand tip" id="authorTip" onclick="onResetDeadlineClick()" style="position: relative; left:16px;">重设</span>
+			</div>
+		</div>
+		<div style="margin-top: 25px">
+	        <button class="actionButton whitebutton normalBtn" style="margin-left: 20px" onclick="clickCancel()">取消</button>
+	        <button id="SaveAndTip" class="actionButton bluebutton normalBtn" onclick="clickOk()">保存</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var today = new Date();	
+	    $('.form_datetime').datetimepicker({
+    			language:  'zh-CN',
+    			format: 'yyyy-mm-dd',
+    			weekStart: 1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				minView: 2,
+				forceParse: 0,
+				pickerPosition: 'top-right',
+		});
+		$('.form_datetime').datetimepicker('setStartDate', today);
+		$('.form_datetime').datetimepicker('setEndDate', '3000-01-01');
+	</script>
+	<script type="text/javascript" src="template_for_communication_with_ynote/js/YNoteCommunicationInterface.js"></script>
+    <script type="text/javascript" src="template_for_communication_with_ynote/js/CefSupportScript.js"></script>
+</body>
+</html>
+
