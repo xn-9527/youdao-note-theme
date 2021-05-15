@@ -72,6 +72,16 @@ TIPS： 以上颜色来自于IDEA的暗夜模式
   因此 自己可以自由发挥了，Windows中比较简单
   直接 往这个文件夹里面按照命名规则放图片即可
 ```
+
+```
+mac系统
+mac系统更换方法和windows差不多，只是这个目录不好找
+而且mac上没有  windows那么自由更换
+从  Finder 里面  按住  shift+command+g  弹出对话框
+然后键入
+~/Library/Containers/com.youdao.note.YoudaoNoteMac/Data/Library/Application Support/com.youdao.note.YoudaoNoteMac/bgImage
+```
+
 不过这个方法的缺点也很明显，旧笔记的背景需要自己设置。
 
 ### 参考资料
