@@ -5,10 +5,10 @@
 - 20210515 目前主要是针对没有暗夜皮肤做的修改
 
 # 目录说明
-- local-data-path:一般windows指安装目录下
-```C:\xxx\Youdao\YunNote\YoudaoNote\theme\default```
-- setup-path:一般指有道云笔记皮肤的目录
-```X:\XX\Youdao\YoudaoNote```
+- local-data-path:一般windows指安装C盘LocalData目录下
+```C:\Users\Administrator\AppData\Local\youdao\ynote```
+- setup-path:一般windows指安装目录下
+```X:\xxx\Youdao\YunNote\YoudaoNote\theme\default```
 
 ## 使用方法
 分别替换对应目录的文件即可，注意备份原版文件。
