@@ -253,13 +253,13 @@
                     </AbstractBtn>
                     <!-- 显示搜索详情按钮 -->
                     <ShowDetailBtn Flat="True">
-                        <Image File="\public\Btn_Search_Down.png" Normal="0,0,18,35" Focus="18,0,36,35" Press="36,0,54,35" Disable="54,0,72,35"/>
+                        <Image File="\public\Btn_Search_Down.png" Normal="54,0,72,35" Focus="18,0,36,35" Press="36,0,54,35" Disable="54,0,72,35"/>
                     </ShowDetailBtn>
                     <HideDetailBtn Flat="True">
-                        <Image File="\public\Btn_Search_Up.png" Normal="0,0,18,35" Focus="18,0,36,35" Press="36,0,54,35" Disable="54,0,72,35"/>
+                        <Image File="\public\Btn_Search_Up.png" Normal="54,0,72,35" Focus="18,0,36,35" Press="36,0,54,35" Disable="54,0,72,35"/>
                     </HideDetailBtn>
                     <btnsearch Flat="true">
-                        <Image File="\public\Btn_Input_Search.png"  Normal="0,0,32,32" Focus="0,0,32,32" Press="0,0,32,32" Disable="0,0,32,32" DpiScale = "2.0"/>
+                        <Image File="\public\Bg_secret_black.png" Normal="0,0,188,188" Focus="0,0,188,188" Press="0,0,188,188" Disable="0,0,188,188" DpiScale = "2.0" />
                     </btnsearch>
                     <btnsearchText>
                         <font redirect="GreySmall"/>
