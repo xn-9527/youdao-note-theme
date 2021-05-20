@@ -2763,9 +2763,10 @@
             <PortraitMaskSimpleMode Flat="True">
                 <Image File="\public\PortraitMaskSimpleMode.png" btnSliceNum="2" DpiScale="2.0"/>
             </PortraitMaskSimpleMode>
-            
+
+            <!-- 主界面头像框遮盖图片(漏个圆圈) -->
             <PortraitMask Flat="True">
-                <Image File="\public\portraitMask.png" btnSliceNum="2" DpiScale="2.0"/>
+                <Image File="\public\PortraitMaskSimpleMode.png" btnSliceNum="2" DpiScale="2.0"/>
             </PortraitMask>
             
             <!-- 清除按钮 -->
